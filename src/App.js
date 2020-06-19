@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import DATA from './dummy-data'
 import Context from './Context'
 import Header from './components/Header/Header.js'
+import LandingPage from './components/Landing Page/LandingPage'
 import './App.css'
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Header />
             <main className="main">
               <Switch>
+                <Route exact path ="/" component={LandingPage} />
               </Switch>
             </main>
           </div>
