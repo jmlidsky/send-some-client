@@ -4,6 +4,7 @@ import DATA from './dummy-data'
 import Context from './Context'
 import Header from './components/Header/Header.js'
 import LandingPage from './components/Landing Page/LandingPage'
+import LocationsPage from './components/Locations/LocationsPage'
 import './App.css'
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
             <main className="main">
               <Switch>
                 <Route exact path ="/" component={LandingPage} />
+                <Route path="/locations" component={LocationsPage} />
               </Switch>
             </main>
           </div>
