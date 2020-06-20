@@ -5,12 +5,12 @@ import Context from './Context'
 import Header from './components/Header/Header.js'
 import LandingPage from './components/Landing Page/LandingPage'
 import LocationsPage from './components/Locations/LocationsPage'
+import ProblemsPage from './components/Problems/ProblemsPage'
 import './App.css'
 
 class App extends Component {
   render() {
     const contextValue = {
-      users: DATA.users,
       locations: DATA.locations,
       problems: DATA.problems,
     }
@@ -23,7 +23,8 @@ class App extends Component {
             <main className="main">
               <Switch>
                 <Route exact path ="/" component={LandingPage} />
-                <Route path="/locations" component={LocationsPage} />
+                <Route exact path="/locations" component={LocationsPage} />
+                <Route path="/locations/:id" component={ProblemsPage} />
               </Switch>
             </main>
           </div>

@@ -13,8 +13,9 @@ class LocationsPage extends Component {
             <div className="locations-page">
                 <h2>My Locations</h2>
                 <form className="add-location-form">
-                    <label htmlFor="location-form-location-name" className="">Add a Location</label>
-                    <input placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" />
+                    <h3>Add a Location</h3>
+                    <label htmlFor="location-form-name">Name</label>
+                    <input required placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" />
                     <button className="add-location-button">Save</button>
                 </form>
                 <ul>
