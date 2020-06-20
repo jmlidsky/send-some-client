@@ -6,18 +6,38 @@ import './ProblemsList.css'
 class ProblemsList extends Component {
     static contextType = Context
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            currentProjectIndex: null,
+            currentAscentIndex: null,
+        }
+    }
+
+    handleProjectButtonClick(index) {
+        this.setState({ currentProjectIndex: index })
+    }
+
+    handleAscentButtonClick(index) {
+        this.setState({ currentAscentIndex: index })
+    }
+
     renderProjects() {
         const { problems } = this.props
         const projects = problems.filter(problem => {
             if (problem.sent === false) {
                 return problem
             }
+            return false
         })
 
         return (
-            projects.map(project => {
+            projects.map((project, index) => {
                 return (
-                    <li>{project.problem_name}</li>
+                    <div key={project.id}>
+                        <button key={index} onClick={() => this.handleProjectButtonClick(index)}>{project.problem_name}</button>
+                        {(this.state.currentProjectIndex === index) && <div>{project.grade}</div>}
+                    </div>
                 )
             })
         )
@@ -29,12 +49,16 @@ class ProblemsList extends Component {
             if (problem.sent === true) {
                 return problem
             }
+            return false
         })
 
         return (
-            ascents.map(ascent => {
+            ascents.map((ascent, index) => {
                 return (
-                    <li>{ascent.problem_name}</li>
+                    <div>
+                        <button key={index} onClick={() => this.handleAscentButtonClick(index)}>{ascent.problem_name}</button>
+                        {(this.state.currentAscentIndex === index) && <div>{ascent.grade}</div>}
+                    </div>
                 )
             })
         )
