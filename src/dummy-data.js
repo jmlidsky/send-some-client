@@ -27,7 +27,7 @@ export default {
             "location_id": 2,
             "problem_name": "Belly Up",
             "grade": "V4",
-            "area": "Jonah Bulder",
+            "area": "Jonah Boulder",
             "notes": "knee scum",
             "sent": false,
         },

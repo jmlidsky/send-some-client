@@ -4,8 +4,12 @@ import DATA from './dummy-data'
 import Context from './Context'
 import Header from './components/Header/Header.js'
 import LandingPage from './components/Landing Page/LandingPage'
+import LoginPage from './components/LoginPage/LoginPage'
+import SignupPage from './components/SignupPage/SignupPage'
 import LocationsPage from './components/Locations/LocationsPage'
 import ProblemsPage from './components/Problems/ProblemsPage'
+import PrivateRoute from './utils/PrivateRoute'
+import PublicOnlyRoute from './utils/PublicOnlyRoute'
 import './App.css'
 
 class App extends Component {
@@ -22,9 +26,11 @@ class App extends Component {
             <Header />
             <main className="main">
               <Switch>
-                <Route exact path ="/" component={LandingPage} />
-                <Route exact path="/locations" component={LocationsPage} />
-                <Route path="/locations/:id" component={ProblemsPage} />
+                <PublicOnlyRoute exact path ="/" component={LandingPage} />
+                <PublicOnlyRoute path="/login" component={LoginPage} />
+                <PublicOnlyRoute path="/signup" component={SignupPage} />
+                <PrivateRoute exact path="/locations" component={LocationsPage} />
+                <PrivateRoute path="/locations/:id" component={ProblemsPage} />
               </Switch>
             </main>
           </div>

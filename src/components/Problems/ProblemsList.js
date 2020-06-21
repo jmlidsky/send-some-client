@@ -24,19 +24,19 @@ class ProblemsList extends Component {
 
     renderProjects() {
         const { problems } = this.props
-        const projects = problems.filter(problem => {
-            if (problem.sent === false) {
-                return problem
-            }
-            return false
-        })
+        const projects = problems.filter(problem => problem.sent === false)
 
         return (
             projects.map((project, index) => {
                 return (
                     <div key={project.id}>
-                        <button key={index} onClick={() => this.handleProjectButtonClick(index)}>{project.problem_name}</button>
-                        {(this.state.currentProjectIndex === index) && <div>{project.grade}</div>}
+                        <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="project-name">{project.problem_name}</button>
+                        {(this.state.currentProjectIndex === index) &&
+                            <div>
+                                <div className="project-grade">{project.grade}</div>
+                                <div className="project-area">{project.area}</div>
+                                <div className="project-notes">{project.notes}</div>
+                            </div>}
                     </div>
                 )
             })
@@ -45,19 +45,19 @@ class ProblemsList extends Component {
 
     renderAscents() {
         const { problems } = this.props
-        const ascents = problems.filter(problem => {
-            if (problem.sent === true) {
-                return problem
-            }
-            return false
-        })
+        const ascents = problems.filter(problem => problem.sent === true)
 
         return (
             ascents.map((ascent, index) => {
                 return (
-                    <div>
-                        <button key={index} onClick={() => this.handleAscentButtonClick(index)}>{ascent.problem_name}</button>
-                        {(this.state.currentAscentIndex === index) && <div>{ascent.grade}</div>}
+                    <div key={index}>
+                        <button onClick={() => this.handleAscentButtonClick(index)} className="ascent-name">{ascent.problem_name}</button>
+                        {(this.state.currentAscentIndex === index) &&
+                            <div>
+                                <div className="ascent-grade">{ascent.grade}</div>
+                                <div className="ascent-area">{ascent.area}</div>
+                                <div className="ascent-notes">{ascent.notes}</div>
+                            </div>}
                     </div>
                 )
             })
