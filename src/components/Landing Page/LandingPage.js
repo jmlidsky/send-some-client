@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TokenService from '../../services/token-service'
 import './LandingPage.css'
 
 class LandingPage extends Component {

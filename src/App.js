@@ -17,6 +17,7 @@ class App extends Component {
     const contextValue = {
       locations: DATA.locations,
       problems: DATA.problems,
+      addLocation: this.addLocation,
     }
 
     return (
