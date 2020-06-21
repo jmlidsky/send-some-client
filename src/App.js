@@ -10,14 +10,39 @@ import LocationsPage from './components/Locations/LocationsPage'
 import ProblemsPage from './components/Problems/ProblemsPage'
 import PrivateRoute from './utils/PrivateRoute'
 import PublicOnlyRoute from './utils/PublicOnlyRoute'
+import TokenService from './services/token-service'
 import './App.css'
 
 class App extends Component {
-  render() {
-    const contextValue = {
+  constructor(props) {
+    super(props)
+    this.state = {
       locations: DATA.locations,
       problems: DATA.problems,
+      hasAuthToken: TokenService.hasAuthToken()
+    }
+  }
+
+  addLocation = (newLocation) => {
+    // console.log(newLocation)
+    this.setState({
+      locations: [...this.state.locations, newLocation]
+    })
+  }
+
+  updateAuthToken = () => {
+    this.setState({
+      hasAuthToken: TokenService.hasAuthToken()
+    })
+  }
+
+  render() {
+    const contextValue = {
+      locations: this.state.locations,
+      problems: this.state.problems,
       addLocation: this.addLocation,
+      updateAuthToken: this.updateAuthToken,
+      hasAuthToken: this.state.hasAuthToken,
     }
 
     return (
@@ -27,7 +52,7 @@ class App extends Component {
             <Header />
             <main className="main">
               <Switch>
-                <PublicOnlyRoute exact path ="/" component={LandingPage} />
+                <PublicOnlyRoute exact path="/" component={LandingPage} />
                 <PublicOnlyRoute path="/login" component={LoginPage} />
                 <PublicOnlyRoute path="/signup" component={SignupPage} />
                 <PrivateRoute exact path="/locations" component={LocationsPage} />

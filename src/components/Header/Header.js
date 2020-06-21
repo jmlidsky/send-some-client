@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Context from '../../Context'
 import TokenService from '../../services/token-service'
 import './Header.css'
 
 class Header extends Component {
+    static contextType = Context
 
     handleLogoutClick = () => {
         TokenService.clearAuthToken()
+        this.context.updateAuthToken()
     }
 
     renderLogoutLink() {
@@ -43,13 +46,15 @@ class Header extends Component {
     }
 
     render() {
+        const { hasAuthToken } = this.context
+
         return (
             <header className="header">
                 <h1>
                     <Link to="/" className="logo">Send Some</Link>
                 </h1>
                 <nav>
-                    {TokenService.hasAuthToken()
+                    { hasAuthToken
                         ? this.renderLogoutLink()
                         : this.renderLoginLink()}
                 </nav>

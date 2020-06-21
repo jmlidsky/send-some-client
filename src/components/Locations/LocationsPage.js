@@ -9,7 +9,7 @@ class LocationsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: {
+            location_name: {
                 value: " ",
                 touched: false,
             }
@@ -18,7 +18,7 @@ class LocationsPage extends Component {
 
     updateName(name) {
         this.setState({
-            name: {
+            location_name: {
                 value: name,
                 touched: true,
             }
@@ -28,16 +28,15 @@ class LocationsPage extends Component {
     handleSubmit = e => {
         e.preventDefault();
         const newLocation = {
-            name: e.target['location-name'].value
+            location_name: e.target['location-name'].value
         }
-        // console.log(newLocation)
         
         this.context.addLocation(newLocation)
     }
 
     render() {
         const { locations } = this.context
-        console.log(this.context)
+        // console.log(this.context)
 
         return (
             <div className="locations-page">
@@ -46,7 +45,7 @@ class LocationsPage extends Component {
                     <h3>Add a Location</h3>
                     <label htmlFor="location-form-name">Name</label>
                     <input required placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" onChange={e => this.updateName(e.target.value)} />
-                    <button className="add-location-button">Save</button>
+                    <button type="submit" className="add-location-button">Save</button>
                 </form>
                 <ul>
                     {locations.map(location =>
