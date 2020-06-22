@@ -81,7 +81,7 @@ class ProblemsPage extends Component {
         e.preventDefault()
         const newProblem = {
             // hard-coded location_id
-            location_id: 1,
+            location_id: 2,
             problem_name: e.target['problem-name'].value,
             grade: e.target['problem-grade'].value,
             area: e.target['problem-area'].value,
