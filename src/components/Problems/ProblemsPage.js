@@ -80,13 +80,16 @@ class ProblemsPage extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const newProblem = {
+            // hard-coded location_id
+            location_id: 1,
             problem_name: e.target['problem-name'].value,
             grade: e.target['problem-grade'].value,
             area: e.target['problem-area'].value,
             notes: e.target['problem-notes'].value,
             sent: e.target['problem-sent-checkbox'].checked,
         }
-        console.log(newProblem)
+        
+        this.context.addProblem(newProblem)
     }
 
     render() {
@@ -104,6 +107,7 @@ class ProblemsPage extends Component {
 
         return (
             <div className="problems-page" >
+                <h2>{selectedLocation.location_name}</h2>
                 <form className="add-problem-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Problem</h3>
                     <div>

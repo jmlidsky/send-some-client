@@ -30,6 +30,13 @@ class App extends Component {
     })
   }
 
+  addProblem = (newProblem) => {
+    // console.log(newProblem)
+    this.setState({
+      problems: [...this.state.problems, newProblem]
+    })
+  }
+
   updateAuthToken = () => {
     this.setState({
       hasAuthToken: TokenService.hasAuthToken()
@@ -41,6 +48,7 @@ class App extends Component {
       locations: this.state.locations,
       problems: this.state.problems,
       addLocation: this.addLocation,
+      addProblem: this.addProblem,
       updateAuthToken: this.updateAuthToken,
       hasAuthToken: this.state.hasAuthToken,
     }

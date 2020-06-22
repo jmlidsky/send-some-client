@@ -53,7 +53,7 @@ class ProblemsList extends Component {
                     <div key={index}>
                         <button onClick={() => this.handleAscentButtonClick(index)} className="ascent-name">{ascent.problem_name}</button>
                         {(this.state.currentAscentIndex === index) &&
-                            <div>
+                            <div className="problem-details">
                                 <div className="ascent-grade">{ascent.grade}</div>
                                 <div className="ascent-area">{ascent.area}</div>
                                 <div className="ascent-notes">{ascent.notes}</div>
@@ -68,13 +68,13 @@ class ProblemsList extends Component {
         return (
             <div className="problems-list" >
                 <section>
-                    <h3>My Projects</h3>
+                    <h4>My Projects</h4>
                     <ul>
                         {this.renderProjects()}
                     </ul>
                 </section>
                 <section>
-                    <h3>My Ascents</h3>
+                    <h4>My Ascents</h4>
                     <ul>
                         {this.renderAscents()}
                     </ul>

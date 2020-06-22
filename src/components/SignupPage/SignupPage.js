@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
+import Context from '../../Context'
 import TokenService from '../../services/token-service'
 import './SignupPage.css'
 
 class SignupPage extends Component {
+    static contextType = Context
+
     constructor(props) {
         super(props);
         this.state = {
             error: null,
-            email: " ",
-            username: " ",
-            password: " ",
-            confirmPassword: " ",
         }
     }
     
@@ -18,6 +17,8 @@ class SignupPage extends Component {
         e.preventDefault();
         this.setState({ error: null })
         TokenService.saveAuthToken()
+        this.props.history.push("/locations")
+        this.context.updateAuthToken()
     }
 
     render() {

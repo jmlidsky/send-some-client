@@ -4,6 +4,7 @@ const Context = React.createContext({
     locations: [],
     problems: [],
     addLocation: () => {},
+    addProblem: () => {},
     updateAuthToken: () => {},
     hasAuthToken: () => {},
 })
