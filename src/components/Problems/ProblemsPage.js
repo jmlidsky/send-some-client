@@ -26,7 +26,7 @@ class ProblemsPage extends Component {
                 touched: false,
             },
             sent: {
-                value: false,
+                checked: true,
                 touched: false,
             }
         }
@@ -71,7 +71,7 @@ class ProblemsPage extends Component {
     updateSent(status) {
         this.setState({
             sent: {
-                value: status,
+                checked: status,
                 touched: true,
             }
         })
@@ -84,7 +84,7 @@ class ProblemsPage extends Component {
             grade: e.target['problem-grade'].value,
             area: e.target['problem-area'].value,
             notes: e.target['problem-notes'].value,
-            sent: e.target['problem-sent-checkbox'].value,
+            sent: e.target['problem-sent-checkbox'].checked,
         }
         console.log(newProblem)
     }
@@ -142,7 +142,7 @@ class ProblemsPage extends Component {
                     </div>
                     <div>
                         <label htmlFor="problem-form-sent-checkbox">Sent?</label>
-                        <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={e => this.updateSent(e.target.value)} />
+                        <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={e => this.updateSent(e.target.checked)} />
                     </div>
                     <button className="add-problem-button">Save</button>
                 </form>
