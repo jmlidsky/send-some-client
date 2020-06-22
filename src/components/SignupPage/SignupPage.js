@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
 import './SignupPage.css'
 
@@ -8,10 +7,14 @@ class SignupPage extends Component {
         super(props);
         this.state = {
             error: null,
+            email: " ",
+            username: " ",
+            password: " ",
+            confirmPassword: " ",
         }
     }
     
-    handleSignUpSubmit = (e) => {
+    handleSignupSubmit = (e) => {
         e.preventDefault();
         this.setState({ error: null })
         TokenService.saveAuthToken()
@@ -19,7 +22,7 @@ class SignupPage extends Component {
 
     render() {
         return (
-            <form className="signup-form" onSubmit={this.handleSignUpSubmit}>
+            <form className="signup-form" onSubmit={this.handleSignupSubmit}>
                 <h3>Sign Up</h3>
                 <div>
                     <label htmlFor="signup-form-email">Email</label>

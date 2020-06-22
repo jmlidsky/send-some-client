@@ -26,7 +26,7 @@ class LocationsPage extends Component {
     }
 
     handleSubmit = e => {
-        e.preventDefault();
+        e.preventDefault()
         const newLocation = {
             location_name: e.target['location-name'].value
         }
