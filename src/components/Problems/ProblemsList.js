@@ -32,7 +32,7 @@ class ProblemsList extends Component {
                     <div key={project.id}>
                         <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="project-name">{project.problem_name}</button>
                         {(this.state.currentProjectIndex === index) &&
-                            <div>
+                            <div className="problem-details">
                                 <div className="project-grade">{project.grade}</div>
                                 <div className="project-area">{project.area}</div>
                                 <div className="project-notes">{project.notes}</div>

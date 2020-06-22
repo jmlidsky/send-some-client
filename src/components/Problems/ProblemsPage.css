@@ -8,19 +8,3 @@
     background: #e6e6e6;
     padding: 5px;
 }
-
-h4 {
-    margin-top: 20px;
-}
-
-.project-name, .ascent-name {
-    background:#e6e6e6;
-    width: 100%;
-    margin-top: 8px;
-    padding: 5px;
-}
-
-.problem-details {
-    border: 1px solid #e6e6e6;
-    padding: 5px;
-}
