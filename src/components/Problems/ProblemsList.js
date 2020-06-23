@@ -11,9 +11,6 @@ class ProblemsList extends Component {
         this.state = {
             currentProjectIndex: null,
             currentAscentIndex: null,
-            sent: {
-                checked: false,
-            },
         }
     }
 
@@ -23,14 +20,6 @@ class ProblemsList extends Component {
 
     handleAscentButtonClick(index) {
         this.setState({ currentAscentIndex: index })
-    }
-
-    handleMoveToAscents() {
-        this.setState({
-            sent: {
-                checked: true,
-            }
-        })
     }
 
     renderProjects() {
@@ -43,14 +32,18 @@ class ProblemsList extends Component {
                     <div key={project.id}>
                         <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="project-name">{project.problem_name}</button>
                         {(this.state.currentProjectIndex === index) &&
-                            <div className="problem-details">
-                                <div className="project-grade">{project.grade}</div>
-                                <div className="project-area">{project.area}</div>
-                                <div className="project-notes">{project.notes}</div>
-                                <label>I sent this!</label>
-                                <input type="checkbox" name="sent-checkbox" className="problem-sent-checkbox" onChange={e => this.handleMoveToAscents(e.target.checked)} />
-                            </div>}
-                    </div>
+                            <div className="problem-expanding-container">
+                                <div className="problem-details">
+                                    <div className="project-grade">{project.grade}</div>
+                                    <div className="project-area">{project.area}</div>
+                                    <div className="project-notes">{project.notes}</div>
+                                </div>
+                                <div>
+                                    <label>Problem Sent?</label>
+                                    <input type="checkbox" name="sent-checkbox" className="problem-sent-checkbox" onChange={(e) => this.context.toggleSentStatus(project.id, e.target.checked)} />
+                                </div>
+                            </div >}
+                    </div >
                 )
             })
         )
@@ -59,17 +52,23 @@ class ProblemsList extends Component {
     renderAscents() {
         const { problems } = this.props
         const ascents = problems.filter(problem => problem.sent === true)
-        console.log(this.state)
+
         return (
             ascents.map((ascent, index) => {
                 return (
                     <div key={index}>
                         <button onClick={() => this.handleAscentButtonClick(index)} className="ascent-name">{ascent.problem_name}</button>
                         {(this.state.currentAscentIndex === index) &&
-                            <div className="problem-details">
-                                <div className="ascent-grade">{ascent.grade}</div>
-                                <div className="ascent-area">{ascent.area}</div>
-                                <div className="ascent-notes">{ascent.notes}</div>
+                            <div className="problem-expanding-container">
+                                <div className="problem-details">
+                                    <div className="ascent-grade">{ascent.grade}</div>
+                                    <div className="ascent-area">{ascent.area}</div>
+                                    <div className="ascent-notes">{ascent.notes}</div>
+                                </div>
+                                <div>
+                                    <label>Problem Sent?</label>
+                                    <input checked type="checkbox" name="sent-checkbox" className="problem-sent-checkbox" onChange={(e) => this.context.toggleSentStatus(ascent.id, e.target.checked)} />
+                                </div>
                             </div>}
                     </div>
                 )

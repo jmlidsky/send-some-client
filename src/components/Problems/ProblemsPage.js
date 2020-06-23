@@ -96,7 +96,7 @@ class ProblemsPage extends Component {
             notes: e.target['problem-notes'].value,
             sent: e.target['problem-sent-checkbox'].checked,
         }
-        
+
         this.context.addProblem(newProblem)
         // console.log(selectedLocation.id)
 
@@ -126,26 +126,8 @@ class ProblemsPage extends Component {
                         <input required placeholder="Belly Up" type="text" name="problem-name" className="problem-name" onChange={e => this.updateName(e.target.value)} />
                     </div>
                     <div>
-                        <label htmlFor="problem-form-grade" className="">Grade</label>
-                        <select required className="select-category" name="problem-grade" onChange={e => this.updateGrade(e.target.value)}>
-                            <option value="V0">V0</option>
-                            <option value="V1">V1</option>
-                            <option value="V2">V2</option>
-                            <option value="V3">V3</option>
-                            <option value="V4">V4</option>
-                            <option value="V5">V5</option>
-                            <option value="V6">V6</option>
-                            <option value="V7">V7</option>
-                            <option value="V8">V8</option>
-                            <option value="V9">V9</option>
-                            <option value="V10">V10</option>
-                            <option value="V11">V11</option>
-                            <option value="V12">V12</option>
-                            <option value="V13">V13</option>
-                            <option value="V14">V14</option>
-                            <option value="V15">V15</option>
-                            <option value="V16">V16</option>
-                        </select>
+                        <label htmlFor="problem-form-grade">Grade</label>
+                        <input required placeholder="V5, 6A, 5.10a, etc." name="problem-grade" className="problem-grade" onChange={e => this.updateGrade(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-area">Area/Boulder</label>
@@ -156,7 +138,7 @@ class ProblemsPage extends Component {
                         <textarea placeholder="e.g. beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={e => this.updateNotes(e.target.value)} />
                     </div>
                     <div>
-                        <label htmlFor="problem-form-sent-checkbox">Sent?</label>
+                        <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
                         <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={e => this.updateSent(e.target.checked)} />
                     </div>
                     <button className="add-problem-button">Save</button>

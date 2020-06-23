@@ -7,6 +7,7 @@ const Context = React.createContext({
     addProblem: () => {},
     updateAuthToken: () => {},
     hasAuthToken: () => {},
+    toggleSentStatus: () => {},
 })
 
 export default Context

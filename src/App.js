@@ -44,6 +44,21 @@ class App extends Component {
     })
   }
 
+  toggleSentStatus = (id, status) => {
+    // console.log(id, status)
+    const { problems } = this.state
+    this.setState({
+      problems: problems.map(problem => {
+        if (problem.id === id) {
+          return {
+            ...problem, sent: status
+          }
+        }
+        return problem
+      })
+    }) 
+  }
+
   render() {
     const contextValue = {
       locations: this.state.locations,
@@ -52,6 +67,7 @@ class App extends Component {
       addProblem: this.addProblem,
       updateAuthToken: this.updateAuthToken,
       hasAuthToken: this.state.hasAuthToken,
+      toggleSentStatus: this.toggleSentStatus,
     }
 
     return (
