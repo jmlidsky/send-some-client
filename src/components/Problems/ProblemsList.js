@@ -11,6 +11,9 @@ class ProblemsList extends Component {
         this.state = {
             currentProjectIndex: null,
             currentAscentIndex: null,
+            sent: {
+                checked: false,
+            },
         }
     }
 
@@ -20,6 +23,14 @@ class ProblemsList extends Component {
 
     handleAscentButtonClick(index) {
         this.setState({ currentAscentIndex: index })
+    }
+
+    handleMoveToAscents() {
+        this.setState({
+            sent: {
+                checked: true,
+            }
+        })
     }
 
     renderProjects() {
@@ -36,6 +47,8 @@ class ProblemsList extends Component {
                                 <div className="project-grade">{project.grade}</div>
                                 <div className="project-area">{project.area}</div>
                                 <div className="project-notes">{project.notes}</div>
+                                <label>I sent this!</label>
+                                <input type="checkbox" name="sent-checkbox" className="problem-sent-checkbox" onChange={e => this.handleMoveToAscents(e.target.checked)} />
                             </div>}
                     </div>
                 )
@@ -46,7 +59,7 @@ class ProblemsList extends Component {
     renderAscents() {
         const { problems } = this.props
         const ascents = problems.filter(problem => problem.sent === true)
-
+        console.log(this.state)
         return (
             ascents.map((ascent, index) => {
                 return (

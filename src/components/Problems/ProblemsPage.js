@@ -123,7 +123,7 @@ class ProblemsPage extends Component {
                     <h3>Add a Problem</h3>
                     <div>
                         <label htmlFor="problem-form-name">Name</label>
-                        <input required placeholder="Belly Up" type="text" name="problem-name" className="problem-name"  onChange={e => this.updateName(e.target.value)} />
+                        <input required placeholder="Belly Up" type="text" name="problem-name" className="problem-name" onChange={e => this.updateName(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-grade" className="">Grade</label>
@@ -153,7 +153,7 @@ class ProblemsPage extends Component {
                     </div>
                     <div>
                         <label htmlFor="problem-form-notes">Notes</label>
-                        <textarea placeholder="e.g. beta, # of pads" type="text" name="problem-notes" className="problem-notes" onChange={e => this.updateNotes(e.target.value)} />
+                        <textarea placeholder="e.g. beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={e => this.updateNotes(e.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-sent-checkbox">Sent?</label>

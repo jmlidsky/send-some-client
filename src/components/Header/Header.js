@@ -17,7 +17,7 @@ class Header extends Component {
             <div className="header_logged-in">
                 <Link
                     to="/locations">
-                    Locations
+                    My Locations
                 </Link>
                 <span className="hyph">{' - '}</span>
                 <Link
