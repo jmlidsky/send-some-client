@@ -8,6 +8,7 @@ import LoginPage from './components/LoginPage/LoginPage'
 import SignupPage from './components/SignupPage/SignupPage'
 import LocationsPage from './components/Locations/LocationsPage'
 import ProblemsPage from './components/Problems/ProblemsPage'
+import NotFoundPage from './components/NotFoundPage/NotFoundPage'
 import PrivateRoute from './utils/PrivateRoute'
 import PublicOnlyRoute from './utils/PublicOnlyRoute'
 import TokenService from './services/token-service'
@@ -65,6 +66,7 @@ class App extends Component {
                 <PublicOnlyRoute path="/signup" component={SignupPage} />
                 <PrivateRoute exact path="/locations" component={LocationsPage} />
                 <PrivateRoute path="/locations/:id" component={ProblemsPage} />
+                <Route component={NotFoundPage} />
               </Switch>
             </main>
           </div>
