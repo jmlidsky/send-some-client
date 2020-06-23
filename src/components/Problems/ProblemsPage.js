@@ -79,9 +79,17 @@ class ProblemsPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
+
+        const lastProblemIndex = this.context.problems.length - 1
+        const lastProblem = this.context.problems[lastProblemIndex]
+
+
+        const { locations } = this.context
+        const location_id = + this.props.match.params.id
+        const selectedLocation = locations.find(location => location.id === location_id)
         const newProblem = {
-            // hard-coded location_id
-            location_id: 2,
+            id: lastProblem.id + 1,
+            location_id: selectedLocation.id,
             problem_name: e.target['problem-name'].value,
             grade: e.target['problem-grade'].value,
             area: e.target['problem-area'].value,
@@ -90,6 +98,9 @@ class ProblemsPage extends Component {
         }
         
         this.context.addProblem(newProblem)
+        // console.log(selectedLocation.id)
+
+        e.target.reset()
     }
 
     render() {

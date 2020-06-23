@@ -9,11 +9,11 @@ export default {
     ],
 
     "locations": [
-        // {
-        //     "id": 1,
-        //     "user_id": 1,
-        //     "location_name": "The New"
-        // },
+        {
+            "id": 1,
+            "user_id": 1,
+            "location_name": "The New"
+        },
         {
             "id": 2,
             "user_id": 1,
@@ -49,23 +49,23 @@ export default {
             "notes": "find feet ahead of time",
             "sent": true,
         },
-        // {
-        //     "id": 4,
-        //     "location_id": 1,
-        //     "problem_name": "Doctor",
-        //     "grade": "V2",
-        //     "area": "",
-        //     "notes": "",
-        //     "sent": true,
-        // },
-        // {
-        //     "id": 5,
-        //     "location_id": 1,
-        //     "problem_name": "I Love Luci",
-        //     "grade": "V3",
-        //     "area": "",
-        //     "notes": "use feet",
-        //     "sent": true,
-        // }
+        {
+            "id": 4,
+            "location_id": 1,
+            "problem_name": "Doctor",
+            "grade": "V2",
+            "area": "",
+            "notes": "",
+            "sent": true,
+        },
+        {
+            "id": 5,
+            "location_id": 1,
+            "problem_name": "I Love Luci",
+            "grade": "V3",
+            "area": "",
+            "notes": "use feet",
+            "sent": true,
+        }
     ]
 }

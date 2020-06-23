@@ -27,12 +27,19 @@ class LocationsPage extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
+
+        const lastLocationIndex = this.context.locations.length - 1
+        const lastLocation = this.context.locations[lastLocationIndex]
+
         const newLocation = {
             // need user_id
+            id: lastLocation.id + 1,
             location_name: e.target['location-name'].value
         }
-        
+
         this.context.addLocation(newLocation)
+
+        e.target.reset()
     }
 
     render() {
