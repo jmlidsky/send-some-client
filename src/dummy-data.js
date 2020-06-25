@@ -4,7 +4,7 @@ export default {
             "id": 1,
             "email": "demo@demo.com",
             "username": "demo",
-            "password": "demo"
+            "password": "password"
         },
     ],
 

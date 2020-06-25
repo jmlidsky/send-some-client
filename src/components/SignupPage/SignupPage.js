@@ -16,9 +16,10 @@ class SignupPage extends Component {
     handleSignupSubmit = (e) => {
         e.preventDefault();
         this.setState({ error: null })
-        TokenService.saveAuthToken()
-        this.props.history.push("/locations")
-        this.context.updateAuthToken()
+        // want the user to login after signing up
+        // TokenService.saveAuthToken()
+        this.props.history.push("/login")
+        // this.context.updateAuthToken()
     }
 
     render() {
