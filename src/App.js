@@ -18,10 +18,22 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      locations: DATA.locations,
-      problems: DATA.problems,
-      // hasAuthToken: TokenService.hasAuthToken()
+      locations: [],
+      problems: [],
+      hasAuthToken: TokenService.hasAuthToken()
     }
+  }
+
+  setLocations = (locations) => {
+    this.setState({
+      locations: [...locations]
+    })
+  }
+
+  setProblems = (problems) => {
+    this.setState({
+      problems: [...problems]
+    })
   }
 
   addLocation = (newLocation) => {
@@ -38,11 +50,11 @@ class App extends Component {
     })
   }
 
-  // updateAuthToken = () => {
-  //   this.setState({
-  //     hasAuthToken: TokenService.hasAuthToken()
-  //   })
-  // }
+  updateAuthToken = () => {
+    this.setState({
+      hasAuthToken: TokenService.hasAuthToken()
+    })
+  }
 
   toggleSentStatus = (id, status) => {
     // console.log(id, status)
@@ -68,6 +80,8 @@ class App extends Component {
       updateAuthToken: this.updateAuthToken,
       hasAuthToken: this.state.hasAuthToken,
       toggleSentStatus: this.toggleSentStatus,
+      setLocations: this.setLocations,
+      setProblems: this.setProblems,
     }
 
     return (
