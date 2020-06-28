@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import config from '../../config'
 import Context from '../../Context'
-import TokenService from '../../services/token-service'
 import './SignupPage.css'
 
 class SignupPage extends Component {
@@ -12,14 +12,39 @@ class SignupPage extends Component {
             error: null,
         }
     }
-    
+
     handleSignupSubmit = (e) => {
-        e.preventDefault();
-        this.setState({ error: null })
-        // want the user to login after signing up
-        // TokenService.saveAuthToken()
-        this.props.history.push("/login")
-        // this.context.updateAuthToken()
+        e.preventDefault()
+
+        this.setState({
+            error: null
+        })
+
+        const email = e.target.email.value
+        const username = e.target.username.value
+        const password = e.target.password.value
+
+        console.log(email, username, password)
+
+        fetch(`${config.API_ENDPOINT}/auth/signup`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({ email, username, password }),
+        })
+            .then(res => {
+                    (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+                    // console.log(res)
+            })
+            .then(res => {
+                // want the user to login after signing up
+                // TokenService.saveAuthToken()
+                this.props.history.push("/login")
+                // this.context.updateAuthToken()
+            })
     }
 
     render() {
