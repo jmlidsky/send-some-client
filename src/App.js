@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       locations: DATA.locations,
       problems: DATA.problems,
-      hasAuthToken: TokenService.hasAuthToken()
+      // hasAuthToken: TokenService.hasAuthToken()
     }
   }
 
@@ -38,11 +38,11 @@ class App extends Component {
     })
   }
 
-  updateAuthToken = () => {
-    this.setState({
-      hasAuthToken: TokenService.hasAuthToken()
-    })
-  }
+  // updateAuthToken = () => {
+  //   this.setState({
+  //     hasAuthToken: TokenService.hasAuthToken()
+  //   })
+  // }
 
   toggleSentStatus = (id, status) => {
     // console.log(id, status)

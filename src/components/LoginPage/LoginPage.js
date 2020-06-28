@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import config from '../../config'
 import Context from '../../Context'
 import TokenService from '../../services/token-service'
 import './LoginPage.css'
@@ -13,17 +14,44 @@ class LoginPage extends Component {
         }
     }
 
-    handleLoginSuccess = e => {
+    handleSubmitJwtAuth = e => {
         e.preventDefault()
-        this.setState({ error: null })
-        TokenService.saveAuthToken()
-        this.props.history.push("/locations")
-        this.context.updateAuthToken()
+
+        this.setState({
+            error: null
+        })
+
+        const username = e.target.username.value
+        const password = e.target.password.value
+
+        // console.log(username, password)
+
+        fetch(`${config.API_ENDPOINT}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ username, password }),
+        })
+            .then(res => {
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            })
+            .then(res => {
+                TokenService.saveAuthToken(res.authToken)
+                console.log(res.authToken)
+                this.props.history.push("/locations")
+                // this.context.updateAuthToken()
+            })
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
     }
 
     render() {
         return (
-            <form className="login-form" onSubmit={this.handleLoginSuccess}>
+            <form className="login-form" onSubmit={this.handleSubmitJwtAuth}>
                 <h3>Log In</h3>
                 <div>
                     <label htmlFor="login-form-username">Username</label>
