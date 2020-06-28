@@ -25,7 +25,6 @@ class LoginPage extends Component {
         const password = e.target.password.value
 
         // console.log(username, password)
-
         fetch(`${config.API_ENDPOINT}/auth/login`, {
             method: 'POST',
             headers: {
@@ -39,8 +38,9 @@ class LoginPage extends Component {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
             })
-            .then(res => {
-                TokenService.saveAuthToken(res.authToken)
+            .then(user => {
+                console.log(user)
+                TokenService.saveAuthToken(user.authToken)
                 this.props.history.push("/locations")
                 // this.context.updateAuthToken()
             })
