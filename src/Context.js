@@ -8,6 +8,8 @@ const Context = React.createContext({
     updateAuthToken: () => {},
     hasAuthToken: () => {},
     toggleSentStatus: () => {},
+    setLocations: () => {},
+    setProblems: () => {},
 })
 
 export default Context

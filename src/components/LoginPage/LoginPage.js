@@ -32,9 +32,11 @@ class LoginPage extends Component {
             },
             body: JSON.stringify({ username, password }),
         })
-        .then(res => {
-            return !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
-          })
+            .then(res => {
+                return !res.ok
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json();
+            })
             .then(user => {
                 // console.log(user)
                 TokenService.saveAuthToken(user.authToken)

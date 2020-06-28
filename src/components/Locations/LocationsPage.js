@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import config from '../../config'
+import TokenService from '../../services/token-service'
 import Context from '../../Context'
 import './LocationsPage.css'
 
@@ -14,6 +16,23 @@ class LocationsPage extends Component {
                 touched: false,
             }
         }
+    }
+
+    componentDidMount() {
+        fetch(`${config.API_ENDPOINT}/locations`, {
+            headers: {
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+            .then(res => {
+                return !res.ok
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json();
+            })
+            .then(locations => {
+                console.log(locations)
+                this.context.setLocations(locations)
+            })
     }
 
     updateName(name) {
@@ -44,7 +63,7 @@ class LocationsPage extends Component {
 
     render() {
         const { locations } = this.context
-        // console.log(this.context)
+        console.log(this.context)
 
         return (
             <div className="locations-page">

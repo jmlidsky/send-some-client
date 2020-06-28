@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import config from '../../config'
+import TokenService from '../../services/token-service'
 import Context from '../../Context'
 import ProblemsList from './ProblemsList'
 import './ProblemsPage.css'
@@ -30,6 +32,24 @@ class ProblemsPage extends Component {
                 touched: false,
             }
         }
+    }
+
+    componentDidMount() {
+        const location_id = + this.props.match.params.id
+        fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems`, {
+            headers: {
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+            .then(res => {
+                return !res.ok
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json();
+            })
+            .then(problems => {
+                console.log(problems)
+                this.context.setProblems(problems)
+            })
     }
 
     updateName(name) {
