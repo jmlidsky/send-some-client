@@ -13,6 +13,7 @@ class Header extends Component {
     }
 
     renderLogoutLink() {
+        console.log(TokenService.hasAuthToken())
         return (
             <div className="header_logged-in">
                 <Link
@@ -30,6 +31,7 @@ class Header extends Component {
     }
 
     renderLoginLink() {
+        console.log(TokenService.hasAuthToken())
         return (
             <div className="header_not-logged-in">
                 <Link
@@ -47,6 +49,7 @@ class Header extends Component {
 
     render() {
         const { hasAuthToken } = this.context
+        console.log(this.context.hasAuthToken)
 
         return (
             <header className="header">
