@@ -11,6 +11,7 @@ const Context = React.createContext({
     setLocations: () => {},
     setProblems: () => {},
     deleteLocation: () => {},
+    updateLocation: () => {},
 })
 
 export default Context

@@ -7,6 +7,7 @@ import LandingPage from './components/Landing Page/LandingPage'
 import LoginPage from './components/LoginPage/LoginPage'
 import SignupPage from './components/SignupPage/SignupPage'
 import LocationsPage from './components/Locations/LocationsPage'
+import EditLocationPage from './components/EditLocationPage/EditLocationPage'
 import ProblemsPage from './components/Problems/ProblemsPage'
 import NotFoundPage from './components/NotFoundPage/NotFoundPage'
 import PrivateRoute from './utils/PrivateRoute'
@@ -42,6 +43,16 @@ class App extends Component {
       locations: [...this.state.locations, newLocation]
     })
   }
+  
+  // updateLocation = (updatedLocation) => {
+  //   this.setState({
+  //     locations: this.state.locations.map(location => {
+  //       (location.id !== updatedLocation.id)
+  //       ? location
+  //       : updatedLocation
+  //     })
+  //   })
+  // }
 
   deleteLocation = (location_id) => {
     const newLocations = this.state.locations.filter(location =>
@@ -91,6 +102,7 @@ class App extends Component {
       setLocations: this.setLocations,
       setProblems: this.setProblems,
       deleteLocation: this.deleteLocation,
+      updateLocation: this.updateLocation
     }
 
     return (
@@ -104,6 +116,7 @@ class App extends Component {
                 <PublicOnlyRoute path="/login" component={LoginPage} />
                 <PublicOnlyRoute path="/signup" component={SignupPage} />
                 <PrivateRoute exact path="/locations" component={LocationsPage} />
+                <PrivateRoute path="/edit/locations/:id" component={EditLocationPage} />
                 <PrivateRoute path="/locations/:id" component={ProblemsPage} />
                 <Route component={NotFoundPage} />
               </Switch>

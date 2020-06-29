@@ -101,6 +101,7 @@ class LocationsPage extends Component {
                             <Link to={`/locations/${location.id}`}>{location.location_name}</Link>
                             <div className="location-buttons">
                                 <button onClick={() => this.handleDeleteLocation(location.id)}>Delete</button>
+                                <Link to={`/edit/locations/${location.id}`}>Edit</Link>
                             </div>
                         </li>
                     )}
