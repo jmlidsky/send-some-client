@@ -49,25 +49,26 @@ class EditLocationPage extends Component {
         e.preventDefault()
         const location_id = + this.props.match.params.id
         const location_name = this.state.location_name
-        console.log({location_name})
+
 
         fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
             method: 'PATCH',
             headers: {
-                'authorization': `Bearer ${TokenService.getAuthToken()}`
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify({location_name})
+            body: JSON.stringify({ location_name })
         })
-            .then(res => 
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
+            .then(res => {
+                // console.log(res)
+                if (!res.ok)
+                    return res.json().then(error => Promise.reject(error))
+            })
             .then(() => {
                 this.props.history.push('/')
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 this.setState({ error })
             })
     }
