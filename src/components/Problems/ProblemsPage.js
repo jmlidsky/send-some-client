@@ -111,7 +111,7 @@ class ProblemsPage extends Component {
             sent: e.target['problem-sent-checkbox'].checked,
         }
 
-        const  location_id  = + this.props.match.params.id
+        const location_id = + this.props.match.params.id
         // const url = `${config.API_ENDPOINT}/locations/${location_id}/problems`
         // console.log(url)
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems`, {
@@ -127,8 +127,9 @@ class ProblemsPage extends Component {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
             )
-        this.context.addProblem(newProblem)
-
+            .then(newProblem => {
+                this.context.addProblem(newProblem)
+            })
         e.target.reset()
     }
 
@@ -145,7 +146,7 @@ class ProblemsPage extends Component {
             // or return false?
             return null
         })
-        
+
         return (
             <div className="problems-page" >
                 <h2>{selectedLocation.location_name}</h2>

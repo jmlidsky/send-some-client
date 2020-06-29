@@ -64,14 +64,16 @@ class LocationsPage extends Component {
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
             )
-        this.context.addLocation(newLocation)
-
+            .then(newLocation => {
+                this.context.addLocation(newLocation)
+            })
         e.target.reset()
     }
 
     render() {
         const { locations } = this.context
         // console.log(this.context)
+        // console.log(this.props)
 
         return (
             <div className="locations-page">
