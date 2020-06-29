@@ -42,7 +42,7 @@ class LoginPage extends Component {
                 TokenService.saveAuthToken(user.authToken)
                 // console.log("saveAuthToken fired")
                 this.props.history.push("/locations")
-                // this.context.updateAuthToken()
+                this.context.updateAuthToken()
             })
             .catch(res => {
                 this.setState({ error: res.error })

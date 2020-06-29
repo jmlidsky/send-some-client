@@ -100,16 +100,10 @@ class ProblemsPage extends Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        const lastProblemIndex = this.context.problems.length - 1
-        const lastProblem = this.context.problems[lastProblemIndex]
-
-
-        const { locations } = this.context
-        const location_id = + this.props.match.params.id
-        const selectedLocation = locations.find(location => location.id === location_id)
+        // const { locations } = this.context
+        // const location_id = + this.props.match.params.id
+        // const selectedLocation = locations.find(location => location.id === location_id)
         const newProblem = {
-            id: lastProblem.id + 1,
-            location_id: selectedLocation.id,
             problem_name: e.target['problem-name'].value,
             grade: e.target['problem-grade'].value,
             area: e.target['problem-area'].value,
@@ -117,11 +111,27 @@ class ProblemsPage extends Component {
             sent: e.target['problem-sent-checkbox'].checked,
         }
 
+        const  location_id  = + this.props.match.params.id
+        // const url = `${config.API_ENDPOINT}/locations/${location_id}/problems`
+        // console.log(url)
+        fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify(newProblem),
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
         this.context.addProblem(newProblem)
-        // console.log(selectedLocation.id)
 
         e.target.reset()
     }
+
 
     render() {
         // console.log(this.props)
@@ -135,7 +145,7 @@ class ProblemsPage extends Component {
             // or return false?
             return null
         })
-
+        
         return (
             <div className="problems-page" >
                 <h2>{selectedLocation.location_name}</h2>
