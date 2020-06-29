@@ -50,7 +50,6 @@ class EditLocationPage extends Component {
         const location_id = + this.props.match.params.id
         const location_name = this.state.location_name
 
-
         fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
             method: 'PATCH',
             headers: {

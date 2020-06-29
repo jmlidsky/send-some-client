@@ -78,7 +78,17 @@ class LocationsPage extends Component {
                 'Authorization': `Bearer ${TokenService.getAuthToken()}`,
             }
         })
-        this.context.deleteLocation(location_id)
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => Promise.reject(error))
+                }
+            })
+            .then(() => {
+                this.context.deleteLocation(location_id)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {

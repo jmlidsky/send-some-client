@@ -44,16 +44,6 @@ class App extends Component {
     })
   }
   
-  // updateLocation = (updatedLocation) => {
-  //   this.setState({
-  //     locations: this.state.locations.map(location => {
-  //       (location.id !== updatedLocation.id)
-  //       ? location
-  //       : updatedLocation
-  //     })
-  //   })
-  // }
-
   deleteLocation = (location_id) => {
     const newLocations = this.state.locations.filter(location =>
       location.id !== location_id)
@@ -102,7 +92,6 @@ class App extends Component {
       setLocations: this.setLocations,
       setProblems: this.setProblems,
       deleteLocation: this.deleteLocation,
-      updateLocation: this.updateLocation
     }
 
     return (
