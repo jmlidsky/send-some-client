@@ -30,7 +30,7 @@ class LocationsPage extends Component {
                     : res.json();
             })
             .then(locations => {
-                console.log(locations)
+                // console.log(locations)
                 this.context.setLocations(locations)
             })
     }
@@ -63,7 +63,7 @@ class LocationsPage extends Component {
 
     render() {
         const { locations } = this.context
-        console.log(this.context)
+        // console.log(this.context)
 
         return (
             <div className="locations-page">

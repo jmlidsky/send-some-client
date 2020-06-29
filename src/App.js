@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import DATA from './dummy-data'
+// import DATA from './dummy-data'
 import Context from './Context'
 import Header from './components/Header/Header.js'
 import LandingPage from './components/Landing Page/LandingPage'

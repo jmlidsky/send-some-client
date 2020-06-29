@@ -24,7 +24,7 @@ class SignupPage extends Component {
         const username = e.target.username.value
         const password = e.target.password.value
 
-        console.log(email, username, password)
+        // console.log(email, username, password)
 
         fetch(`${config.API_ENDPOINT}/auth/signup`, {
             method: 'POST',

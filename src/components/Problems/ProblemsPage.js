@@ -47,7 +47,7 @@ class ProblemsPage extends Component {
                     : res.json();
             })
             .then(problems => {
-                console.log(problems)
+                // console.log(problems)
                 this.context.setProblems(problems)
             })
     }

@@ -40,7 +40,7 @@ class LoginPage extends Component {
             .then(user => {
                 // console.log(user)
                 TokenService.saveAuthToken(user.authToken)
-                console.log("saveAuthToken fired")
+                // console.log("saveAuthToken fired")
                 this.props.history.push("/locations")
                 // this.context.updateAuthToken()
             })
