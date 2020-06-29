@@ -10,6 +10,7 @@ const Context = React.createContext({
     toggleSentStatus: () => {},
     setLocations: () => {},
     setProblems: () => {},
+    deleteLocation: () => {},
 })
 
 export default Context

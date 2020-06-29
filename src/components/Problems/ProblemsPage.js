@@ -11,6 +11,7 @@ class ProblemsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            location_name: '',
             problem_name: {
                 value: " ",
                 touched: false,
@@ -36,6 +37,22 @@ class ProblemsPage extends Component {
 
     componentDidMount() {
         const location_id = + this.props.match.params.id
+        fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
+            headers: {
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+            .then(res => {
+                return !res.ok
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json();
+            })
+            .then(location => {
+                this.setState({
+                    location_name: location.location_name
+                })
+            })
+
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems`, {
             headers: {
                 'Authorization': `Bearer ${TokenService.getAuthToken()}`,
@@ -136,20 +153,15 @@ class ProblemsPage extends Component {
 
     render() {
         // console.log(this.props)
-        const { locations, problems } = this.context
+        const { problems } = this.context
         const location_id = + this.props.match.params.id
-        const selectedLocation = locations.find(location => location.id === location_id)
         const problemsToDisplay = problems.filter(problem => {
-            if (selectedLocation) {
-                return problem.location_id === selectedLocation.id
-            }
-            // or return false?
-            return null
+                return problem.location_id === location_id
         })
-
+        
         return (
             <div className="problems-page" >
-                <h2>{selectedLocation.location_name}</h2>
+                <h2>{this.state.location_name}</h2>
                 <form className="add-problem-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Problem</h3>
                     <div>

@@ -43,6 +43,14 @@ class App extends Component {
     })
   }
 
+  deleteLocation = (location_id) => {
+    const newLocations = this.state.locations.filter(location =>
+      location.id !== location_id)
+      this.setState({
+        locations: newLocations
+      })
+  }
+
   addProblem = (newProblem) => {
     // console.log(newProblem)
     this.setState({
@@ -82,6 +90,7 @@ class App extends Component {
       toggleSentStatus: this.toggleSentStatus,
       setLocations: this.setLocations,
       setProblems: this.setProblems,
+      deleteLocation: this.deleteLocation,
     }
 
     return (

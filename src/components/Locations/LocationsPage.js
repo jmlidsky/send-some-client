@@ -70,6 +70,17 @@ class LocationsPage extends Component {
         e.target.reset()
     }
 
+    handleDeleteLocation = (location_id) => {
+        fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+        this.context.deleteLocation(location_id)
+    }
+
     render() {
         const { locations } = this.context
         // console.log(this.context)
@@ -88,6 +99,9 @@ class LocationsPage extends Component {
                     {locations.map(location =>
                         <li key={location.id}>
                             <Link to={`/locations/${location.id}`}>{location.location_name}</Link>
+                            <div className="location-buttons">
+                                <button onClick={() => this.handleDeleteLocation(location.id)}>Delete</button>
+                            </div>
                         </li>
                     )}
                 </ul>
