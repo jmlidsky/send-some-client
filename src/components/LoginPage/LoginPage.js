@@ -59,7 +59,7 @@ class LoginPage extends Component {
                 </div>
                 <div>
                     <label htmlFor="login-form-username">Password</label>
-                    <input required name="password" className="login-form-password"></input>
+                    <input required type="password" name="password" className="login-form-password"></input>
                 </div>
                 <button className="login-button">Log In</button>
             </form>

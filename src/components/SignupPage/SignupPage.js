@@ -61,11 +61,11 @@ class SignupPage extends Component {
                 </div>
                 <div>
                     <label htmlFor="signup-form-password">Password</label>
-                    <input required name="password" className="signup-form-password"></input>
+                    <input required type="password" name="password" className="signup-form-password"></input>
                 </div>
                 <div>
                     <label htmlFor="signup-form-confirm-password">Confirm Password</label>
-                    <input required name="confirm-password" className="signup-form-confirm-password"></input>
+                    <input required type="password" name="confirm-password" className="signup-form-confirm-password"></input>
                 </div>
                 <button className="signup-button">Sign Up</button>
             </form>
