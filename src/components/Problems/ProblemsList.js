@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import config from '../../config'
+import TokenService from '../../services/token-service'
 import Context from '../../Context'
 import './ProblemsList.css'
 
@@ -13,6 +16,30 @@ class ProblemsList extends Component {
         }
     }
 
+    handleDeleteProblem = (location_id, problem_id) => {
+        const url = `${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`
+        console.log(url)
+        // fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`, {
+        //     method: 'DELETE',
+        //     headers: {
+        //         'content-type': 'application/json',
+        //         'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+        //     }
+        // })
+        //     .then(res => {
+        //         if (!res.ok) {
+        //             return res.json().then(error => Promise.reject(error))
+        //         }
+        //     })
+        //     .then(() => {
+        //         this.context.deleteProblem(problem_id)
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
+    }
+
+
     handleProjectButtonClick(index) {
         this.setState({ currentProjectIndex: index })
     }
@@ -23,6 +50,7 @@ class ProblemsList extends Component {
 
     renderProjects() {
         const { problems } = this.props
+        console.log(this.props)
         const projects = problems.filter(problem => problem.sent === false)
 
         return (
@@ -37,9 +65,9 @@ class ProblemsList extends Component {
                                     <div className="project-area">{project.area}</div>
                                     <div className="project-notes">{project.notes}</div>
                                 </div>
-                                <div>
-                                    <label>Problem Sent?</label>
-                                    <input type="checkbox" name="sent-checkbox" className="problem-sent-checkbox" onChange={(e) => this.context.toggleSentStatus(project.id, e.target.checked)} />
+                                <div className="problem-buttons">
+                                    <button onClick={() => this.handleDeleteProblem(project.id)}>Delete</button>
+                                    <Link to={`/edit/problems/${project.id}`}>Edit</Link>
                                 </div>
                             </div >}
                     </div >
@@ -64,9 +92,9 @@ class ProblemsList extends Component {
                                     <div className="ascent-area">{ascent.area}</div>
                                     <div className="ascent-notes">{ascent.notes}</div>
                                 </div>
-                                <div>
-                                    <label>Problem Sent?</label>
-                                    <input checked type="checkbox" name="sent-checkbox" className="problem-sent-checkbox" onChange={(e) => this.context.toggleSentStatus(ascent.id, e.target.checked)} />
+                                <div className="problem-buttons">
+                                    <button onClick={() => this.handleDeleteProblem(ascent.id)}>Delete</button>
+                                    <Link to={`/edit/problems/${ascent.id}`}>Edit</Link>
                                 </div>
                             </div>}
                     </div>

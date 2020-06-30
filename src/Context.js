@@ -7,10 +7,10 @@ const Context = React.createContext({
     addProblem: () => {},
     updateAuthToken: () => {},
     hasAuthToken: () => {},
-    toggleSentStatus: () => {},
     setLocations: () => {},
     setProblems: () => {},
     deleteLocation: () => {},
+    deleteProblem: () => {},
 })
 
 export default Context

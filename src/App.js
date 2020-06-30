@@ -59,25 +59,18 @@ class App extends Component {
     })
   }
 
+  deleteProblem = (problem_id) => {
+    const newProblems = this.state.problems.filter(problem =>
+      problem.id !== problem_id)
+      this.setState({
+        problems: newProblems
+      })
+  }
+
   updateAuthToken = () => {
     this.setState({
       hasAuthToken: TokenService.hasAuthToken()
     })
-  }
-
-  toggleSentStatus = (id, status) => {
-    // console.log(id, status)
-    const { problems } = this.state
-    this.setState({
-      problems: problems.map(problem => {
-        if (problem.id === id) {
-          return {
-            ...problem, sent: status
-          }
-        }
-        return problem
-      })
-    }) 
   }
 
   render() {
@@ -88,10 +81,11 @@ class App extends Component {
       addProblem: this.addProblem,
       updateAuthToken: this.updateAuthToken,
       hasAuthToken: this.state.hasAuthToken,
-      toggleSentStatus: this.toggleSentStatus,
+      // toggleSentStatus: this.toggleSentStatus,
       setLocations: this.setLocations,
       setProblems: this.setProblems,
       deleteLocation: this.deleteLocation,
+      deleteProblem: this.deleteProblem
     }
 
     return (
