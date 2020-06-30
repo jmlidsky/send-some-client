@@ -187,7 +187,7 @@ class ProblemsPage extends Component {
                     <button className="add-problem-button">Save</button>
                 </form>
                 <div>
-                    <ProblemsList problems={problemsToDisplay} />
+                    <ProblemsList problems={problemsToDisplay} location_id={location_id}/>
                 </div>
             </div>
         );

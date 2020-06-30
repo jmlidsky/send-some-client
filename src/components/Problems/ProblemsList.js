@@ -16,27 +16,28 @@ class ProblemsList extends Component {
         }
     }
 
-    handleDeleteProblem = (location_id, problem_id) => {
-        const url = `${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`
-        console.log(url)
-        // fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`, {
-        //     method: 'DELETE',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         'Authorization': `Bearer ${TokenService.getAuthToken()}`,
-        //     }
-        // })
-        //     .then(res => {
-        //         if (!res.ok) {
-        //             return res.json().then(error => Promise.reject(error))
-        //         }
-        //     })
-        //     .then(() => {
-        //         this.context.deleteProblem(problem_id)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
+    handleDeleteProblem = (problem_id) => {
+        const location_id = this.props.location_id
+        // const url = `${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`
+        // console.log(url)
+        fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.json().then(error => Promise.reject(error))
+                }
+            })
+            .then(() => {
+                this.context.deleteProblem(problem_id)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
@@ -50,7 +51,7 @@ class ProblemsList extends Component {
 
     renderProjects() {
         const { problems } = this.props
-        console.log(this.props)
+        // console.log(this.props)
         const projects = problems.filter(problem => problem.sent === false)
 
         return (
