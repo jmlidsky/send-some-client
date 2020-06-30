@@ -9,6 +9,7 @@ import SignupPage from './components/SignupPage/SignupPage'
 import LocationsPage from './components/Locations/LocationsPage'
 import EditLocationPage from './components/EditLocationPage/EditLocationPage'
 import ProblemsPage from './components/Problems/ProblemsPage'
+import EditProblemPage from './components/EditProblemPage/EditProblemPage'
 import NotFoundPage from './components/NotFoundPage/NotFoundPage'
 import PrivateRoute from './utils/PrivateRoute'
 import PublicOnlyRoute from './utils/PublicOnlyRoute'
@@ -81,7 +82,6 @@ class App extends Component {
       addProblem: this.addProblem,
       updateAuthToken: this.updateAuthToken,
       hasAuthToken: this.state.hasAuthToken,
-      // toggleSentStatus: this.toggleSentStatus,
       setLocations: this.setLocations,
       setProblems: this.setProblems,
       deleteLocation: this.deleteLocation,
@@ -99,8 +99,9 @@ class App extends Component {
                 <PublicOnlyRoute path="/login" component={LoginPage} />
                 <PublicOnlyRoute path="/signup" component={SignupPage} />
                 <PrivateRoute exact path="/locations" component={LocationsPage} />
-                <PrivateRoute path="/edit/locations/:id" component={EditLocationPage} />
+                <PrivateRoute exact path="/edit/locations/:id" component={EditLocationPage} />
                 <PrivateRoute path="/locations/:id" component={ProblemsPage} />
+                <PrivateRoute path="/edit/locations/:id/problems/:id" component={EditProblemPage} />
                 <Route component={NotFoundPage} />
               </Switch>
             </main>

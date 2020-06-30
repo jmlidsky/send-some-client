@@ -51,7 +51,6 @@ class ProblemsList extends Component {
 
     renderProjects() {
         const { problems } = this.props
-        // console.log(this.props)
         const projects = problems.filter(problem => problem.sent === false)
 
         return (
@@ -68,7 +67,7 @@ class ProblemsList extends Component {
                                 </div>
                                 <div className="problem-buttons">
                                     <button onClick={() => this.handleDeleteProblem(project.id)}>Delete</button>
-                                    <Link to={`/edit/problems/${project.id}`}>Edit</Link>
+                                    <Link to={`/edit/locations/${this.props.location_id}/problems/${project.id}`}>Edit</Link>
                                 </div>
                             </div >}
                     </div >
@@ -95,7 +94,7 @@ class ProblemsList extends Component {
                                 </div>
                                 <div className="problem-buttons">
                                     <button onClick={() => this.handleDeleteProblem(ascent.id)}>Delete</button>
-                                    <Link to={`/edit/problems/${ascent.id}`}>Edit</Link>
+                                    <Link to={`/edit/locations/${this.props.location_id}/problems/${ascent.id}`}>Edit</Link>
                                 </div>
                             </div>}
                     </div>

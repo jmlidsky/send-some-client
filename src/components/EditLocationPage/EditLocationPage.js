@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-import Context from '../../Context'
 // import './EditLocationPage.css'
 
 class EditLocationPage extends Component {
-    static contextType = Context
-
     constructor(props) {
         super(props)
         this.state = {
