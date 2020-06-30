@@ -75,7 +75,7 @@ class EditLocationPage extends Component {
             <div className="edit-location-page">
                 <form className="edit-location-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Edit Location</h3>
-                    <label htmlFor="location-form-name">Name</label>
+                    <label htmlFor="location-form-name">Name *</label>
                     <input required value={location_name} type="text" name="location-name" className="location-name" onChange={this.handleChangeLocationName} />
                     <button type="submit" className="add-location-button">Save</button>
                 </form>

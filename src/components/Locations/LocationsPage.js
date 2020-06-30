@@ -101,7 +101,7 @@ class LocationsPage extends Component {
                 <h2>My Locations</h2>
                 <form className="add-location-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Location</h3>
-                    <label htmlFor="location-form-name">Name</label>
+                    <label htmlFor="location-form-name">Name *</label>
                     <input required placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" onChange={e => this.updateName(e.target.value)} />
                     <button type="submit" className="add-location-button">Save</button>
                 </form>

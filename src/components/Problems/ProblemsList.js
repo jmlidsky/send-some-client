@@ -67,7 +67,7 @@ class ProblemsList extends Component {
                                 </div>
                                 <div className="problem-buttons">
                                     <button onClick={() => this.handleDeleteProblem(project.id)}>Delete</button>
-                                    <Link to={`/edit/locations/${this.props.location_id}/problems/${project.id}`}>Edit</Link>
+                                    <Link to={{pathname:`/edit/locations/${this.props.location_id}/problems/${project.id}`, state:{location_id: this.props.location_id}}}>Edit</Link>
                                 </div>
                             </div >}
                     </div >
@@ -94,7 +94,7 @@ class ProblemsList extends Component {
                                 </div>
                                 <div className="problem-buttons">
                                     <button onClick={() => this.handleDeleteProblem(ascent.id)}>Delete</button>
-                                    <Link to={`/edit/locations/${this.props.location_id}/problems/${ascent.id}`}>Edit</Link>
+                                    <Link to={{pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state:{location_id: this.props.location_id}}}>Edit</Link>
                                 </div>
                             </div>}
                     </div>

@@ -165,11 +165,11 @@ class ProblemsPage extends Component {
                 <form className="add-problem-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Problem</h3>
                     <div>
-                        <label htmlFor="problem-form-name">Name</label>
+                        <label htmlFor="problem-form-name">Name *</label>
                         <input required placeholder="Belly Up" type="text" name="problem-name" className="problem-name" onChange={e => this.updateName(e.target.value)} />
                     </div>
                     <div>
-                        <label htmlFor="problem-form-grade">Grade</label>
+                        <label htmlFor="problem-form-grade">Grade *</label>
                         <input required placeholder="V5, 6A, 5.10a, etc." name="problem-grade" className="problem-grade" onChange={e => this.updateGrade(e.target.value)} />
                     </div>
                     <div>
