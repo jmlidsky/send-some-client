@@ -164,7 +164,7 @@ class ProblemsPage extends Component {
                         <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
                         <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleChangeSent} />
                     </div>
-                    <button className="add-problem-button">Save</button>
+                    <button className="add-problem-button" type="submit">Save</button>
                 </form>
                 <div>
                     <ProblemsList problems={problemsToDisplay} location_id={location_id} />

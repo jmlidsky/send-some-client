@@ -70,7 +70,7 @@ class LoginPage extends Component {
                     <label htmlFor="login-form-username">Password</label>
                     <input required type="password" name="password" className="login-form-password" onChange={this.handleChangePassword}></input>
                 </div>
-                <button className="login-button">Log In</button>
+                <button className="login-button" type="submit">Log In</button>
             </form>
         )
     }
