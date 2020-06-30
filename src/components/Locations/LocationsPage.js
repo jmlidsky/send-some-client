@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Context from '../../Context'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-import Context from '../../Context'
 import './LocationsPage.css'
 
 class LocationsPage extends Component {
@@ -11,63 +11,31 @@ class LocationsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            location_name: {
-                value: " ",
-                touched: false,
-            }
+            error: null,
+            location_name: '',
         }
     }
 
     componentDidMount() {
         fetch(`${config.API_ENDPOINT}/locations`, {
             headers: {
+                'content-type': 'application/json',
                 'Authorization': `Bearer ${TokenService.getAuthToken()}`,
             }
         })
             .then(res => {
-                return !res.ok
+                return (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
-                    : res.json();
+                    : res.json()
             })
             .then(locations => {
                 // console.log(locations)
                 this.context.setLocations(locations)
             })
-    }
-
-    updateName(name) {
-        this.setState({
-            location_name: {
-                value: name,
-                touched: true,
-            }
-        })
-    }
-
-    handleSubmit = e => {
-        e.preventDefault()
-
-        const newLocation = {
-            location_name: e.target['location-name'].value
-        }
-
-        fetch(`${config.API_ENDPOINT}/locations`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
-            },
-            body: JSON.stringify(newLocation),
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
-            .then(newLocation => {
-                this.context.addLocation(newLocation)
+            .catch(error => {
+                console.error(error)
+                this.setState({ error })
             })
-        e.target.reset()
     }
 
     handleDeleteLocation = (location_id) => {
@@ -87,8 +55,45 @@ class LocationsPage extends Component {
                 this.context.deleteLocation(location_id)
             })
             .catch(error => {
-                console.log(error)
+                console.error(error)
+                this.setState({ error })
             })
+    }
+
+    handleChangeLocationName = (e) => {
+        this.setState({
+            location_name: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const { location_name } = this.state
+        const newLocation = { location_name }
+
+        fetch(`${config.API_ENDPOINT}/locations`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify(newLocation),
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+            .then(newLocation => {
+                this.context.addLocation(newLocation)
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({ error })
+            })
+
+        e.target.reset()
     }
 
     render() {
@@ -102,7 +107,7 @@ class LocationsPage extends Component {
                 <form className="add-location-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Location</h3>
                     <label htmlFor="location-form-name">Name *</label>
-                    <input required placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" onChange={e => this.updateName(e.target.value)} />
+                    <input required placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" onChange={this.handleChangeLocationName} />
                     <button type="submit" className="add-location-button">Save</button>
                 </form>
                 <ul>

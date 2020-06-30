@@ -14,17 +14,19 @@ class EditLocationPage extends Component {
 
     componentDidMount() {
         const location_id = + this.props.match.params.id
+
         fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
             method: 'GET',
             headers: {
-                'authorization': `Bearer ${TokenService.getAuthToken()}`
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`
             }
         })
-            .then(res =>
-                (!res.ok)
+            .then(res => {
+                return (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
-            )
+            })
             .then(location => {
                 this.setState({
                     location_name: location.location_name
@@ -36,16 +38,18 @@ class EditLocationPage extends Component {
             })
     }
 
-    handleChangeLocationName = (e) => {
+    handleUpdateLocationName = (e) => {
         this.setState({
             location_name: e.target.value
         })
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault()
         const location_id = + this.props.match.params.id
-        const location_name = this.state.location_name
+
+        const { location_name } = this.state
+        const updatedLocation = { location_name }
 
         fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
             method: 'PATCH',
@@ -53,10 +57,9 @@ class EditLocationPage extends Component {
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
-            body: JSON.stringify({ location_name })
+            body: JSON.stringify(updatedLocation)
         })
             .then(res => {
-                // console.log(res)
                 if (!res.ok)
                     return res.json().then(error => Promise.reject(error))
             })
@@ -64,7 +67,7 @@ class EditLocationPage extends Component {
                 this.props.history.push('/')
             })
             .catch(error => {
-                // console.log(error)
+                console.log(error)
                 this.setState({ error })
             })
     }
@@ -76,11 +79,11 @@ class EditLocationPage extends Component {
                 <form className="edit-location-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Edit Location</h3>
                     <label htmlFor="location-form-name">Name *</label>
-                    <input required value={location_name} type="text" name="location-name" className="location-name" onChange={this.handleChangeLocationName} />
+                    <input required value={location_name} type="text" name="location-name" className="location-name" onChange={this.handleUpdateLocationName} />
                     <button type="submit" className="add-location-button">Save</button>
                 </form>
             </div>
-        );
+        )
     }
 }
 

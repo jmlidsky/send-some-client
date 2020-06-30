@@ -3,14 +3,14 @@ import React from 'react'
 const Context = React.createContext({
     locations: [],
     problems: [],
-    addLocation: () => {},
-    addProblem: () => {},
-    updateAuthToken: () => {},
-    hasAuthToken: () => {},
-    setLocations: () => {},
-    setProblems: () => {},
-    deleteLocation: () => {},
-    deleteProblem: () => {},
+    hasAuthToken: () => { },
+    updateAuthToken: () => { },
+    setLocations: () => { },
+    setProblems: () => { },
+    addLocation: () => { },
+    addProblem: () => { },
+    deleteLocation: () => { },
+    deleteProblem: () => { },
 })
 
 export default Context

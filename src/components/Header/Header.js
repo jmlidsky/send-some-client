@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Context from '../../Context'
 import TokenService from '../../services/token-service'
 import './Header.css'
@@ -16,16 +16,16 @@ class Header extends Component {
         // console.log(TokenService.hasAuthToken())
         return (
             <div className="header_logged-in">
-                <Link
+                <NavLink
                     to="/locations">
                     My Locations
-                </Link>
+                </NavLink>
                 <span className="hyph">{' - '}</span>
-                <Link
+                <NavLink
                     onClick={this.handleLogoutClick}
                     to="/">
                     Logout
-                </Link>
+                </NavLink>
             </div>
         )
     }
@@ -34,15 +34,15 @@ class Header extends Component {
         // console.log(TokenService.hasAuthToken())
         return (
             <div className="header_not-logged-in">
-                <Link
+                <NavLink
                     to="/signup">
                     Sign Up
-                </Link>
+                </NavLink>
                 <span className="hyph">{' - '}</span>
-                <Link
+                <NavLink
                     to="/login">
                     Log in
-                </Link>
+                </NavLink>
             </div>
         )
     }

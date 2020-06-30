@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import Context from '../../Context'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-import Context from '../../Context'
 import ProblemsList from './ProblemsList'
 import './ProblemsPage.css'
 
@@ -11,126 +11,101 @@ class ProblemsPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            error: null,
             location_name: '',
-            problem_name: {
-                value: " ",
-                touched: false,
-            },
-            grade: {
-                value: " ",
-                touched: false,
-            },
-            area: {
-                value: " ",
-                touched: false,
-            },
-            notes: {
-                value: " ",
-                touched: false,
-            },
-            sent: {
-                checked: true,
-                touched: false,
-            }
+            problem_name: '',
+            grade: '',
+            area: '',
+            notes: '',
+            sent: false,
         }
     }
 
     componentDidMount() {
+        // for location name header
         const location_id = + this.props.match.params.id
+        
         fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
             headers: {
+                'content-type': 'application/json',
                 'Authorization': `Bearer ${TokenService.getAuthToken()}`,
             }
         })
             .then(res => {
-                return !res.ok
+                return (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
-                    : res.json();
+                    : res.json()
             })
             .then(location => {
                 this.setState({
                     location_name: location.location_name
                 })
             })
+            .catch(error => {
+                console.error(error)
+                this.setState({ error })
+            })
 
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems`, {
             headers: {
+                'content-type': 'application/json',
                 'Authorization': `Bearer ${TokenService.getAuthToken()}`,
             }
         })
             .then(res => {
-                return !res.ok
+                return (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
-                    : res.json();
+                    : res.json()
             })
             .then(problems => {
                 // console.log(problems)
                 this.context.setProblems(problems)
             })
+            .catch(error => {
+                console.error(error)
+                this.setState({ error })
+            })
     }
 
-    updateName(name) {
+    handleChangeProblemName = (e) => {
         this.setState({
-            problem_name: {
-                value: name,
-                touched: true,
-            }
+            problem_name: e.target.value
         })
     }
 
-    updateGrade(grade) {
+    handleChangeGrade = (e) => {
         this.setState({
-            grade: {
-                value: grade,
-                touched: true,
-            }
+            grade: e.target.value
         })
     }
 
-    updateArea(area) {
+    handleChangeArea = (e) => {
         this.setState({
-            area: {
-                value: area,
-                touched: true,
-            }
+            area: e.target.value
         })
     }
 
-    updateNotes(note) {
+    handleChangeNotes = (e) => {
         this.setState({
-            notes: {
-                value: note,
-                touched: true,
-            }
+            notes: e.target.value
         })
     }
 
-    updateSent(status) {
+    handleChangeSent = (e) => {
         this.setState({
-            sent: {
-                checked: status,
-                touched: true,
-            }
+            sent: e.target.checked
         })
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault()
 
-        // const { locations } = this.context
-        // const location_id = + this.props.match.params.id
-        // const selectedLocation = locations.find(location => location.id === location_id)
-        const newProblem = {
-            problem_name: e.target['problem-name'].value,
-            grade: e.target['problem-grade'].value,
-            area: e.target['problem-area'].value,
-            notes: e.target['problem-notes'].value,
-            sent: e.target['problem-sent-checkbox'].checked,
-        }
-
         const location_id = + this.props.match.params.id
-        // const url = `${config.API_ENDPOINT}/locations/${location_id}/problems`
-        // console.log(url)
+
+        const { problem_name, grade, area, notes, sent } = this.state
+        const newProblem = { problem_name, grade, area, notes, sent }
+
+        // console.log(`${config.API_ENDPOINT}/locations/${location_id}/problems`)
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems`, {
             method: 'POST',
             headers: {
@@ -139,14 +114,19 @@ class ProblemsPage extends Component {
             },
             body: JSON.stringify(newProblem),
         })
-            .then(res =>
-                (!res.ok)
+            .then(res => {
+                return (!res.ok)
                     ? res.json().then(e => Promise.reject(e))
                     : res.json()
-            )
+            })
             .then(newProblem => {
                 this.context.addProblem(newProblem)
             })
+            .catch(error => {
+                console.log(error)
+                this.setState({ error })
+            })
+
         e.target.reset()
     }
 
@@ -156,9 +136,9 @@ class ProblemsPage extends Component {
         const { problems } = this.context
         const location_id = + this.props.match.params.id
         const problemsToDisplay = problems.filter(problem => {
-                return problem.location_id === location_id
+            return problem.location_id === location_id
         })
-        
+
         return (
             <div className="problems-page" >
                 <h2>{this.state.location_name}</h2>
@@ -166,31 +146,31 @@ class ProblemsPage extends Component {
                     <h3>Add a Problem</h3>
                     <div>
                         <label htmlFor="problem-form-name">Name *</label>
-                        <input required placeholder="Belly Up" type="text" name="problem-name" className="problem-name" onChange={e => this.updateName(e.target.value)} />
+                        <input required type="text" name="problem-name" className="problem-name" onChange={this.handleChangeProblemName} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-grade">Grade *</label>
-                        <input required placeholder="V5, 6A, 5.10a, etc." name="problem-grade" className="problem-grade" onChange={e => this.updateGrade(e.target.value)} />
+                        <input required name="problem-grade" className="problem-grade" onChange={this.handleChangeGrade} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-area">Area/Boulder</label>
-                        <input placeholder="Jonah Boulder" type="text" name="problem-area" className="problem-area" onChange={e => this.updateArea(e.target.value)} />
+                        <input type="text" name="problem-area" className="problem-area" onChange={this.handleChangeArea} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-notes">Notes</label>
-                        <textarea placeholder="e.g. beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={e => this.updateNotes(e.target.value)} />
+                        <textarea placeholder="beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={this.handleChangeNotes} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
-                        <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={e => this.updateSent(e.target.checked)} />
+                        <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleChangeSent} />
                     </div>
                     <button className="add-problem-button">Save</button>
                 </form>
                 <div>
-                    <ProblemsList problems={problemsToDisplay} location_id={location_id}/>
+                    <ProblemsList problems={problemsToDisplay} location_id={location_id} />
                 </div>
             </div>
-        );
+        )
     }
 }
 

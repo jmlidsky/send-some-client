@@ -8,7 +8,7 @@ class NotFoundPage extends Component {
                 <h2>Page Not Found</h2>
                 <p>This page does not exist. Try going back or using the navigation menu.</p>
             </div>
-        );
+        )
     }
 }
 

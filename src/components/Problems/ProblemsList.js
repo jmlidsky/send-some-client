@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Context from '../../Context'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-import Context from '../../Context'
 import './ProblemsList.css'
 
 class ProblemsList extends Component {
@@ -11,15 +11,28 @@ class ProblemsList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            error: null,
             currentProjectIndex: null,
             currentAscentIndex: null,
         }
     }
 
+    handleProjectButtonClick(index) {
+        this.setState({
+            currentProjectIndex: index
+        })
+    }
+
+    handleAscentButtonClick(index) {
+        this.setState({
+            currentAscentIndex: index
+        })
+    }
+
     handleDeleteProblem = (problem_id) => {
         const location_id = this.props.location_id
-        // const url = `${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`
-        // console.log(url)
+
+        // console.log(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`)
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`, {
             method: 'DELETE',
             headers: {
@@ -37,16 +50,8 @@ class ProblemsList extends Component {
             })
             .catch(error => {
                 console.log(error)
+                this.setState({ error })
             })
-    }
-
-
-    handleProjectButtonClick(index) {
-        this.setState({ currentProjectIndex: index })
-    }
-
-    handleAscentButtonClick(index) {
-        this.setState({ currentAscentIndex: index })
     }
 
     renderProjects() {
@@ -67,10 +72,10 @@ class ProblemsList extends Component {
                                 </div>
                                 <div className="problem-buttons">
                                     <button onClick={() => this.handleDeleteProblem(project.id)}>Delete</button>
-                                    <Link to={{pathname:`/edit/locations/${this.props.location_id}/problems/${project.id}`, state:{location_id: this.props.location_id}}}>Edit</Link>
+                                    <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${project.id}`, state: { location_id: this.props.location_id } }}>Edit</Link>
                                 </div>
-                            </div >}
-                    </div >
+                            </div>}
+                    </div>
                 )
             })
         )
@@ -94,7 +99,7 @@ class ProblemsList extends Component {
                                 </div>
                                 <div className="problem-buttons">
                                     <button onClick={() => this.handleDeleteProblem(ascent.id)}>Delete</button>
-                                    <Link to={{pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state:{location_id: this.props.location_id}}}>Edit</Link>
+                                    <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state: { location_id: this.props.location_id } }}>Edit</Link>
                                 </div>
                             </div>}
                     </div>

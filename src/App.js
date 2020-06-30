@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 // import DATA from './dummy-data'
 import Context from './Context'
+import TokenService from './services/token-service'
 import Header from './components/Header/Header.js'
 import LandingPage from './components/Landing Page/LandingPage'
 import LoginPage from './components/LoginPage/LoginPage'
 import SignupPage from './components/SignupPage/SignupPage'
 import LocationsPage from './components/Locations/LocationsPage'
-import EditLocationPage from './components/EditLocationPage/EditLocationPage'
 import ProblemsPage from './components/Problems/ProblemsPage'
+import EditLocationPage from './components/EditLocationPage/EditLocationPage'
 import EditProblemPage from './components/EditProblemPage/EditProblemPage'
 import NotFoundPage from './components/NotFoundPage/NotFoundPage'
 import PrivateRoute from './utils/PrivateRoute'
 import PublicOnlyRoute from './utils/PublicOnlyRoute'
-import TokenService from './services/token-service'
 import './App.css'
 
 class App extends Component {
@@ -24,6 +24,12 @@ class App extends Component {
       problems: [],
       hasAuthToken: TokenService.hasAuthToken()
     }
+  }
+
+  updateAuthToken = () => {
+    this.setState({
+      hasAuthToken: TokenService.hasAuthToken()
+    })
   }
 
   setLocations = (locations) => {
@@ -44,14 +50,6 @@ class App extends Component {
       locations: [...this.state.locations, newLocation]
     })
   }
-  
-  deleteLocation = (location_id) => {
-    const newLocations = this.state.locations.filter(location =>
-      location.id !== location_id)
-      this.setState({
-        locations: newLocations
-      })
-  }
 
   addProblem = (newProblem) => {
     // console.log(newProblem)
@@ -60,17 +58,19 @@ class App extends Component {
     })
   }
 
+  deleteLocation = (location_id) => {
+    const newLocations = this.state.locations.filter(location =>
+      location.id !== location_id)
+    this.setState({
+      locations: newLocations
+    })
+  }
+
   deleteProblem = (problem_id) => {
     const newProblems = this.state.problems.filter(problem =>
       problem.id !== problem_id)
-      this.setState({
-        problems: newProblems
-      })
-  }
-
-  updateAuthToken = () => {
     this.setState({
-      hasAuthToken: TokenService.hasAuthToken()
+      problems: newProblems
     })
   }
 
@@ -78,12 +78,12 @@ class App extends Component {
     const contextValue = {
       locations: this.state.locations,
       problems: this.state.problems,
-      addLocation: this.addLocation,
-      addProblem: this.addProblem,
-      updateAuthToken: this.updateAuthToken,
       hasAuthToken: this.state.hasAuthToken,
+      updateAuthToken: this.updateAuthToken,
       setLocations: this.setLocations,
       setProblems: this.setProblems,
+      addLocation: this.addLocation,
+      addProblem: this.addProblem,
       deleteLocation: this.deleteLocation,
       deleteProblem: this.deleteProblem
     }

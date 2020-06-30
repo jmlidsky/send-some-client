@@ -1,49 +1,67 @@
 import React, { Component } from 'react'
 import config from '../../config'
-import Context from '../../Context'
 import './SignupPage.css'
 
 class SignupPage extends Component {
-    static contextType = Context
 
     constructor(props) {
         super(props);
         this.state = {
             error: null,
+            email: '',
+            username: '',
+            password: '',
+            confirmPassword: '',
         }
+    }
+
+    handleChangeEmail = (e) => {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handleChangeUsername = (e) => {
+        this.setState({
+            username: e.target.value
+        })
+    }
+
+    handleChangePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    handleChangeConfirmPassword = (e) => {
+        this.setState({
+            confirmPassword: e.target.value
+        })
     }
 
     handleSignupSubmit = (e) => {
         e.preventDefault()
 
-        this.setState({
-            error: null
-        })
-
-        const email = e.target.email.value
-        const username = e.target.username.value
-        const password = e.target.password.value
-
-        // console.log(email, username, password)
+        const { email, username, password } = this.state
+        const newUser = { email, username, password }
 
         fetch(`${config.API_ENDPOINT}/auth/signup`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify({ email, username, password }),
+            body: JSON.stringify(newUser),
         })
             .then(res => {
-                    (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-                    // console.log(res)
+                if (!res.ok)
+                    return res.json().then(error => Promise.reject(error))
             })
-            .then(res => {
-                // want the user to login after signing up
-                // TokenService.saveAuthToken()
+            .then(() => {
                 this.props.history.push("/login")
-                // this.context.updateAuthToken()
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({ error })
             })
     }
 
@@ -53,19 +71,19 @@ class SignupPage extends Component {
                 <h3>Sign Up</h3>
                 <div>
                     <label htmlFor="signup-form-email">Email</label>
-                    <input required name="email" className="signup-form-email"></input>
+                    <input required name="email" className="signup-form-email" onChange={this.handleChangeEmail}></input>
                 </div>
                 <div>
                     <label htmlFor="signup-form-username">Username</label>
-                    <input required name="username" className="signup-form-username"></input>
+                    <input required name="username" className="signup-form-username" onChange={this.handleChangeUsername}></input>
                 </div>
                 <div>
                     <label htmlFor="signup-form-password">Password</label>
-                    <input required type="password" name="password" className="signup-form-password"></input>
+                    <input required type="password" name="password" className="signup-form-password" onChange={this.handleChangePassword}></input>
                 </div>
                 <div>
                     <label htmlFor="signup-form-confirm-password">Confirm Password</label>
-                    <input required type="password" name="confirm-password" className="signup-form-confirm-password"></input>
+                    <input required type="password" name="confirm-password" className="signup-form-confirm-password" onChange={this.handleChangeConfirmPassword}></input>
                 </div>
                 <button className="signup-button">Sign Up</button>
             </form>

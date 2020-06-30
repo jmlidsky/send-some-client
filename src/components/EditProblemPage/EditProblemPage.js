@@ -19,11 +19,13 @@ class EditProblemPage extends Component {
     componentDidMount() {
         const { location_id } = this.props.location.state
         const problem_id = +this.props.match.params.id
-        // console.log((`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`))
+        
+        // console.log(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`)
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`, {
             method: 'GET',
             headers: {
-                'authorization': `Bearer ${TokenService.getAuthToken()}`
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${TokenService.getAuthToken()}`
             }
         })
             .then(res =>
@@ -46,38 +48,37 @@ class EditProblemPage extends Component {
             })
     }
 
-
-    handleChangeProblemName = (e) => {
+    handleUpdateProblemName = (e) => {
         this.setState({
             problem_name: e.target.value
         })
     }
 
-    handleChangeGrade = (e) => {
+    handleUpdateGrade = (e) => {
         this.setState({
             grade: e.target.value
         })
     }
 
-    handleChangeArea = (e) => {
+    handleUpdateArea = (e) => {
         this.setState({
             area: e.target.value
         })
     }
 
-    handleChangeNotes = (e) => {
+    handleUpdateNotes = (e) => {
         this.setState({
             notes: e.target.value
         })
     }
 
-    handleChangeSent = (e) => {
+    handleUpdateSent = (e) => {
         this.setState({
             sent: e.target.checked
         })
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault()
         const { location_id } = this.props.location.state
         const problem_id = +this.props.match.params.id
@@ -85,7 +86,7 @@ class EditProblemPage extends Component {
         const { problem_name, grade, area, notes, sent } = this.state
         const updatedProblem = { problem_name, grade, area, notes, sent }
         // console.log(JSON.stringify(updatedProblem))
-        
+
         fetch(`${config.API_ENDPOINT}/locations/${location_id}/problems/${problem_id}`, {
             method: 'PATCH',
             headers: {
@@ -95,7 +96,6 @@ class EditProblemPage extends Component {
             body: JSON.stringify(updatedProblem)
         })
             .then(res => {
-                // console.log(res)
                 if (!res.ok)
                     return res.json().then(error => Promise.reject(error))
             })
@@ -103,7 +103,7 @@ class EditProblemPage extends Component {
                 this.props.history.goBack()
             })
             .catch(error => {
-                // console.log(error)
+                console.log(error)
                 this.setState({ error })
             })
     }
@@ -117,28 +117,28 @@ class EditProblemPage extends Component {
                     <h3>Edit Problem</h3>
                     <div>
                         <label htmlFor="problem-form-name">Name *</label>
-                        <input required value={problem_name} type="text" name="problem-name" className="problem-name" onChange={this.handleChangeProblemName} />
+                        <input required value={problem_name} type="text" name="problem-name" className="problem-name" onChange={this.handleUpdateProblemName} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-grade">Grade *</label>
-                        <input required value={grade} name="problem-grade" className="problem-grade" onChange={this.handleChangeGrade} />
+                        <input required value={grade} name="problem-grade" className="problem-grade" onChange={this.handleUpdateGrade} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-area">Area/Boulder</label>
-                        <input type="text" value={area} name="problem-area" className="problem-area" onChange={this.handleChangeArea} />
+                        <input type="text" value={area} name="problem-area" className="problem-area" onChange={this.handleUpdateArea} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-notes">Notes</label>
-                        <textarea type="text" value={notes} name="problem-notes" className="problem-notes" onChange={this.handleChangeNotes} />
+                        <textarea type="text" value={notes} name="problem-notes" className="problem-notes" onChange={this.handleUpdateNotes} />
                     </div>
                     <div>
                         <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
-                        <input type="checkbox" checked={sent} name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleChangeSent} />
+                        <input type="checkbox" checked={sent} name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleUpdateSent} />
                     </div>
                     <button className="add-problem-button">Save</button>
                 </form>
             </div>
-        );
+        )
     }
 }
 
