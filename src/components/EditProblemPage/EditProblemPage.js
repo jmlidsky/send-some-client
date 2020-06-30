@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import config from '../../config'
 import TokenService from '../../services/token-service'
-// import './EditProblemPage.css'
+import './EditProblemPage.css'
 
 class EditProblemPage extends Component {
     constructor(props) {
