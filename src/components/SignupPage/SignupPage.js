@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Context from '../../Context'
 import config from '../../config'
+import TokenService from '../../services/token-service'
 import ValidationError from '../../components/ValidationError/ValidationError'
 import './SignupPage.css'
 
 class SignupPage extends Component {
+    static contextType = Context
 
     constructor(props) {
         super(props);
@@ -105,15 +108,19 @@ class SignupPage extends Component {
             body: JSON.stringify(newUser),
         })
             .then(res => {
-                if (!res.ok)
-                    return res.json().then(error => Promise.reject(error))
+                return (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
             })
-            .then(() => {
-                this.props.history.push("/login")
+            .then((user) => {
+                TokenService.saveAuthToken(user.authToken)
+                // console.log("saveAuthToken fired")
+                this.props.history.push("/locations")
+                this.context.updateAuthToken()
             })
             .catch(error => {
-                console.log(error)
-                this.setState({ error })
+                // console.log(error)
+                this.setState({ error: error.error })
             })
     }
 
@@ -121,7 +128,7 @@ class SignupPage extends Component {
         const usernameError = this.validateUsername()
         const passwordError = this.validatePassword()
         const confirmPasswordError = this.validateConfirmPassword()
-        
+
         return (
             <form className="signup-form" onSubmit={this.handleSignupSubmit}>
                 <h3>Sign Up</h3>
@@ -132,17 +139,17 @@ class SignupPage extends Component {
                 <div>
                     <label htmlFor="signup-form-username">Username</label>
                     <input required type="text" name="username" className="signup-form-username" onChange={this.handleChangeUsername}></input>
-                    {this.state.username.touched && (<ValidationError message={usernameError} />)}
+                    {this.state.username.touched && (<ValidationError className="validation-error" message={usernameError} />)}
                 </div>
                 <div>
                     <label htmlFor="signup-form-password">Password</label>
                     <input required type="password" name="password" className="signup-form-password" onChange={this.handleChangePassword}></input>
-                    {this.state.password.touched && (<ValidationError message={passwordError} />)}
+                    {this.state.password.touched && (<ValidationError className="validation-error" message={passwordError} />)}
                 </div>
                 <div>
                     <label htmlFor="signup-form-confirm-password">Confirm Password</label>
                     <input required type="password" name="confirm-password" className="signup-form-confirm-password" onChange={this.handleChangeConfirmPassword}></input>
-                    {this.state.confirmPassword.touched && (<ValidationError message={confirmPasswordError} />)}
+                    {this.state.confirmPassword.touched && (<ValidationError className="validation-error" message={confirmPasswordError} />)}
                 </div>
                 <button className="signup-button" type="submit"
                     disabled={
@@ -151,6 +158,7 @@ class SignupPage extends Component {
                         this.validateConfirmPassword()
                     }
                 >Sign Up</button>
+                {this.state.error && (<p className="signup-error"> {this.state.error} </p>)}
             </form>
         )
     }
