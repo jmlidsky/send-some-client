@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-// import DATA from './dummy-data'
 import Context from './Context'
 import TokenService from './services/token-service'
 import Header from './components/Header/Header.js'
