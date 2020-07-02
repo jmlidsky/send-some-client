@@ -30,7 +30,7 @@ class SignupPage extends Component {
 
     handleChangeEmail = (e) => {
         this.setState({
-            email: e.target.value
+            email: e.target.value.toLowerCase()
         })
     }
 
@@ -38,7 +38,7 @@ class SignupPage extends Component {
         this.setState({
             username: {
                 touched: true,
-                value: e.target.value
+                value: e.target.value.toLowerCase()
             }
 
         })

@@ -89,7 +89,7 @@ class LocationsPage extends Component {
                 this.context.addLocation(newLocation)
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 this.setState({ error })
             })
 

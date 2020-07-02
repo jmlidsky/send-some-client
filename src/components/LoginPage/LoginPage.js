@@ -18,7 +18,7 @@ class LoginPage extends Component {
 
     handleChangeUsername = (e) => {
         this.setState({
-            username: e.target.value
+            username: e.target.value.toLowerCase()
         })
     }
 
@@ -53,7 +53,7 @@ class LoginPage extends Component {
                 this.context.updateAuthToken()
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 this.setState({ error })
             })
     }
@@ -71,6 +71,7 @@ class LoginPage extends Component {
                     <input required type="password" name="password" className="login-form-password" onChange={this.handleChangePassword}></input>
                 </div>
                 <button className="login-button" type="submit">Log In</button>
+                {this.state.error && (<p className="login-error"> {this.state.error.error} </p>)}
             </form>
         )
     }

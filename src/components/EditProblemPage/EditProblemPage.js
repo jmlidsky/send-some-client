@@ -103,7 +103,7 @@ class EditProblemPage extends Component {
                 this.props.history.goBack()
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 this.setState({ error })
             })
     }

@@ -49,7 +49,7 @@ class ProblemsList extends Component {
                 this.context.deleteProblem(problem_id)
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 this.setState({ error })
             })
     }

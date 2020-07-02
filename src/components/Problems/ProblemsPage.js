@@ -123,7 +123,7 @@ class ProblemsPage extends Component {
                 this.context.addProblem(newProblem)
             })
             .catch(error => {
-                console.log(error)
+                // console.log(error)
                 this.setState({ error })
             })
 
