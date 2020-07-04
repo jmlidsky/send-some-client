@@ -20,18 +20,30 @@ nav a {
     color: #a8dadc;
     text-transform: lowercase;
     text-decoration: none;
+    font-family: 'Comfortaa', cursive;
+}
+
+nav a:hover {
+    border-bottom: .8px solid #a8dadc;
+    padding-bottom: 1px;
 }
 
 .hyph {
     color: #a8dadc;
+    padding: 0 8px;
 }
 
 @media (min-width: 768px) {
-    /* header {
-    justify-content: space-between
-}
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 
-nav {
-    align-self: center
-} */
+    nav {
+        /* padding added to bottom for lowercase nav to optically align  */
+        padding-bottom: 4px;
+    }
 }

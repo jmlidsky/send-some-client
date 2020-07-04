@@ -35,13 +35,14 @@ class Header extends Component {
         return (
             <div className="header_not-logged-in">
                 <NavLink
+                    to="/login">
+                    Login
+                </NavLink>
+                {/* <span className="hyph">{' - '}</span> */}
+                <span className="hyph">&bull;</span>
+                <NavLink
                     to="/signup">
                     Sign Up
-                </NavLink>
-                <span className="hyph">{' - '}</span>
-                <NavLink
-                    to="/login">
-                    Log in
                 </NavLink>
             </div>
         )
