@@ -103,19 +103,19 @@ class LocationsPage extends Component {
 
         return (
             <div className="locations-page">
-                <h2>My Locations</h2>
-                <form className="add-location-form" onSubmit={e => this.handleSubmit(e)}>
-                    <h3>Add a Location</h3>
-                    <label htmlFor="location-form-name">Name *</label>
-                    <input required type="text" name="location-name" className="location-name-input" onChange={this.handleChangeLocationName} />
-                    <button type="submit" className="add-button">Save</button>
+                <h3 className="top-header">My Locations</h3>
+                <form className="add-location-form form" onSubmit={e => this.handleSubmit(e)}>
+                    <h3 className="card-header">Add a Location</h3>
+                    <label htmlFor="location-form-name">Name <span className="red">*</span></label>
+                    <input required type="text" name="name" onChange={this.handleChangeLocationName} />
+                    <button type="submit" className="form-button">Save</button>
                 </form>
                 <div className="locations-list">
                     {locations.map(location =>
                         <div className="location-item" key={location.id}>
-                            {/* <div className="location-name-wrapper"> */}
-                            <Link to={`/locations/${location.id}`} className="location-name">{location.location_name}</Link>
-                            {/* </div> */}
+                            <Link to={`/locations/${location.id}`}>
+                                <h4 className="location-name">{location.location_name}</h4>
+                            </Link>
                             <div className="location-buttons">
                                 <Link to={`/edit/locations/${location.id}`}><i className="far fa-edit"></i></Link>
                                 <button onClick={() => this.handleDeleteLocation(location.id)}><i className="far fa-trash-alt"></i>

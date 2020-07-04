@@ -5,7 +5,7 @@ class NotFoundPage extends Component {
     render() {
         return (
             <div className="not-found-page">
-                <h2>Page Not Found</h2>
+                <h3 className="card-header">Page Not Found</h3>
                 <p>This page does not exist. Try going back or using the navigation menu.</p>
             </div>
         )

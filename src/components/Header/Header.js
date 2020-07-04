@@ -59,7 +59,7 @@ class Header extends Component {
                 <nav>
                     { hasAuthToken
                         ? this.renderLogoutLink()
-                        : this.renderLoginLink()}
+                        : this.renderLoginLink() }
                 </nav>
             </header>
         )

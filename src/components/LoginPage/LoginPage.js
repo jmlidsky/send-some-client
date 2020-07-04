@@ -60,17 +60,17 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <form className="login-form" onSubmit={this.handleSubmitJwtAuth}>
-                <h3>Log In</h3>
+            <form className="login-form form" onSubmit={this.handleSubmitJwtAuth}>
+                <h3 className="card-header">Login</h3>
 
                 <label htmlFor="login-form-username">Username</label>
-                <input required name="username" className="login-form-username" onChange={this.handleChangeUsername}></input>
+                <input required name="username" onChange={this.handleChangeUsername}></input>
 
                 <label htmlFor="login-form-username">Password</label>
-                <input required type="password" name="password" className="login-form-password" onChange={this.handleChangePassword}></input>
+                <input required type="password" name="password" onChange={this.handleChangePassword}></input>
 
-                <button className="login-button" type="submit">Log In</button>
-                {this.state.error && (<p className="login-error"> {this.state.error.error} </p>)}
+                <button className="form-button" type="submit">Log In</button>
+                {this.state.error && (<p className="error-message"> {this.state.error.error} </p>)}
             </form>
         )
     }

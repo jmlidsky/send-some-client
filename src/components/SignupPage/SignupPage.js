@@ -130,32 +130,32 @@ class SignupPage extends Component {
         const confirmPasswordError = this.validateConfirmPassword()
 
         return (
-            <form className="signup-form" onSubmit={this.handleSignupSubmit}>
-                <h3>Sign Up</h3>
+            <form className="signup-form form" onSubmit={this.handleSignupSubmit}>
+                <h3 className="card-header">Sign Up</h3>
 
-                <label htmlFor="signup-form-email">Email</label>
-                <input required type="email" name="email" className="signup-form-email" onChange={this.handleChangeEmail}></input>
+                <label htmlFor="signup-form-email">Email <span className="red">*</span></label>
+                <input required type="email" name="email" onChange={this.handleChangeEmail}></input>
 
-                <label htmlFor="signup-form-username">Username</label>
-                <input required type="text" name="username" className="signup-form-username" onChange={this.handleChangeUsername}></input>
-                {this.state.username.touched && (<ValidationError className="validation-error" message={usernameError} />)}
+                <label htmlFor="signup-form-username">Username <span className="red">*</span></label>
+                <input required type="text" name="username" onChange={this.handleChangeUsername}></input>
+                {this.state.username.touched && (<ValidationError className="error-message" message={usernameError} />)}
 
-                <label htmlFor="signup-form-password">Password</label>
-                <input required type="password" name="password" className="signup-form-password" onChange={this.handleChangePassword}></input>
-                {this.state.password.touched && (<ValidationError className="validation-error" message={passwordError} />)}
+                <label htmlFor="signup-form-password">Password <span className="red">*</span></label>
+                <input required type="password" name="password" onChange={this.handleChangePassword}></input>
+                {this.state.password.touched && (<ValidationError className="error-message" message={passwordError} />)}
 
-                <label htmlFor="signup-form-confirm-password">Confirm Password</label>
-                <input required type="password" name="confirm-password" className="signup-form-confirm-password" onChange={this.handleChangeConfirmPassword}></input>
-                {this.state.confirmPassword.touched && (<ValidationError className="validation-error" message={confirmPasswordError} />)}
+                <label htmlFor="signup-form-confirm-password">Confirm Password <span className="red">*</span></label>
+                <input required type="password" name="confirm-password" onChange={this.handleChangeConfirmPassword}></input>
+                {this.state.confirmPassword.touched && (<ValidationError className="error-message" message={confirmPasswordError} />)}
 
-                <button className="signup-button" type="submit"
+                <button className="form-button" type="submit"
                     disabled={
                         this.validateUsername() ||
                         this.validatePassword() ||
                         this.validateConfirmPassword()
                     }
                 >Sign Up</button>
-                {this.state.error && (<p className="signup-error"> {this.state.error} </p>)}
+                {this.state.error && (<p className="error-message"> {this.state.error} </p>)}
             </form>
         )
     }

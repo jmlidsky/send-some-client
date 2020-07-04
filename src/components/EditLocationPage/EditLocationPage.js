@@ -79,19 +79,17 @@ class EditLocationPage extends Component {
     render() {
         const { location_name } = this.state
         return (
-            <div className="edit-location-page">
-                <form className="edit-location-form" onSubmit={e => this.handleSubmit(e)}>
-                    <h3>Edit Location</h3>
+                <form className="edit-form form" onSubmit={e => this.handleSubmit(e)}>
+                    <h3 className="card-header">Edit Location</h3>
 
-                    <label htmlFor="location-form-name">Name *</label>
-                    <input required value={location_name} type="text" name="location-name" className="edit-location-name" onChange={this.handleUpdateLocationName} />
+                    <label htmlFor="location-form-name">Name <span className="red">*</span></label>
+                    <input required value={location_name} type="text" name="name" onChange={this.handleUpdateLocationName} />
 
-                    <div className="edit-buttons">
-                        <button type="submit" className="add-button">Save</button>
-                        <button type="button" className="cancel-button" onClick={this.handleCancelEdit}>Cancel</button>
+                    <div className="edit-page-buttons-container">
+                        <button type="submit" className="form-button">Save</button>
+                        <button type="button" className="form-button" onClick={this.handleCancelEdit}>Cancel</button>
                     </div>
                 </form>
-            </div>
         )
     }
 }

@@ -7,7 +7,7 @@ class LandingPage extends Component {
             <div className="landing-page">
                 <h2>A logbook for climbers.</h2>
                 <p><strong>SEND SOME</strong> will help you organize & keep track of your projects & ascents.</p>
-                <div className="landing-page-directions">
+                <div className="directions-container">
                     <p>To demo the app, use the following credentials:</p>
                     <p>Username: demo<br />
                     Password: password</p>

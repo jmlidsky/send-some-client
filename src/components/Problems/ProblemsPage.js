@@ -141,28 +141,28 @@ class ProblemsPage extends Component {
 
         return (
             <div className="problems-page" >
-                <h2>{this.state.location_name}</h2>
-                <form className="add-problem-form" onSubmit={e => this.handleSubmit(e)}>
-                    <h3>Add a Problem</h3>
+                <h3 className="top-header">{this.state.location_name}</h3>
+                <form className="add-problem-form form" onSubmit={e => this.handleSubmit(e)}>
+                    <h3 className="card-header">Add a Problem</h3>
 
-                    <label htmlFor="problem-form-name">Name *</label>
-                    <input required type="text" name="problem-name" className="problem-name" onChange={this.handleChangeProblemName} />
+                    <label htmlFor="problem-form-name">Name <span className="red">*</span></label>
+                    <input required type="text" name="name" onChange={this.handleChangeProblemName} />
 
-                    <label htmlFor="problem-form-grade">Grade *</label>
-                    <input required name="problem-grade" className="problem-grade" onChange={this.handleChangeGrade} />
+                    <label htmlFor="problem-form-grade">Grade <span className="red">*</span></label>
+                    <input required name="grade" onChange={this.handleChangeGrade} />
 
                     <label htmlFor="problem-form-area">Area/Boulder</label>
-                    <input type="text" name="problem-area" className="problem-area" onChange={this.handleChangeArea} />
+                    <input type="text" name="area" onChange={this.handleChangeArea} />
 
                     <label htmlFor="problem-form-notes">Notes</label>
-                    <textarea placeholder="beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={this.handleChangeNotes} />
+                    <textarea placeholder="beta, # of pads, etc." type="text" name="notes" onChange={this.handleChangeNotes} />
 
-                    <div className="problem-sent-wrapper">
+                    <div className="sent-container">
                         <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
-                        <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleChangeSent} />
+                        <input type="checkbox" name="sent-checkbox" className="sent-checkbox" onChange={this.handleChangeSent} />
                     </div>
 
-                    <button className="add-button" type="submit">Save</button>
+                    <button className="form-button" type="submit">Save</button>
                 </form>
                 <div>
                     <ProblemsList problems={problemsToDisplay} location_id={location_id} />

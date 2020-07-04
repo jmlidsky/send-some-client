@@ -62,12 +62,12 @@ class ProblemsList extends Component {
             projects.map((project, index) => {
                 return (
                     <div className="problem-item" key={project.id}>
-                        <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="project-name-and-grade">{project.problem_name} &ndash; {project.grade}</button>
+                        <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="name-and-grade">{project.problem_name} &ndash; {project.grade}</button>
                         {(this.state.currentProjectIndex === index) &&
-                            <div className="problem-expanding-container">
-                                <div className="problem-details">
-                                    <div className="project-area">Area/Boulder: {project.area}</div>
-                                    <div className="project-notes">Notes: {project.notes}</div>
+                            <div className="expanding-container">
+                                <div className="details-container">
+                                    <div>Area/Boulder: {project.area}</div>
+                                    <div>Notes: {project.notes}</div>
                                 </div>
                                 <div className="problem-buttons">
                                     <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${project.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
@@ -88,12 +88,12 @@ class ProblemsList extends Component {
             ascents.map((ascent, index) => {
                 return (
                     <div className="problem-item" key={index}>
-                        <button onClick={() => this.handleAscentButtonClick(index)} className="ascent-name-and-grade">{ascent.problem_name} &ndash; {ascent.grade}</button>
+                        <button onClick={() => this.handleAscentButtonClick(index)} className="name-and-grade">{ascent.problem_name} &ndash; {ascent.grade}</button>
                         {(this.state.currentAscentIndex === index) &&
-                            <div className="problem-expanding-container">
-                                <div className="problem-details">
-                                    <div className="ascent-area">Area/Boulder: {ascent.area}</div>
-                                    <div className="ascent-notes">Notes: {ascent.notes}</div>
+                            <div className="expanding-container">
+                                <div className="details-container">
+                                    <div><span class="highlight">Area/Boulder:</span> {ascent.area}</div>
+                                    <div><span class="highlight">Notes:</span> {ascent.notes}</div>
                                 </div>
                                 <div className="problem-buttons">
                                     <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
@@ -109,13 +109,13 @@ class ProblemsList extends Component {
     render() {
         return (
             <div className="problems-list" >
-                <section>
+                <section className="section-container">
                     <h4>My Projects</h4>
                     <div>
                         {this.renderProjects()}
                     </div>
                 </section>
-                <section>
+                <section className="section-container">
                     <h4>My Ascents</h4>
                     <div>
                         {this.renderAscents()}

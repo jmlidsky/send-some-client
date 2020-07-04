@@ -116,33 +116,31 @@ class EditProblemPage extends Component {
         const { problem_name, grade, area, notes, sent } = this.state
         // console.log(this.state)
         return (
-            <div className="edit-location-page">
-                <form className="edit-problem-form" onSubmit={e => this.handleSubmit(e)}>
-                    <h3>Edit Problem</h3>
+                <form className="edit-form form" onSubmit={e => this.handleSubmit(e)}>
+                    <h3 className="card-header">Edit Problem</h3>
 
-                    <label htmlFor="problem-form-name">Name *</label>
-                    <input required value={problem_name} type="text" name="problem-name" className="problem-name" onChange={this.handleUpdateProblemName} />
+                    <label htmlFor="problem-form-name">Name <span className="red">*</span></label>
+                    <input required value={problem_name} type="text" name="name" onChange={this.handleUpdateProblemName} />
 
-                    <label htmlFor="problem-form-grade">Grade *</label>
-                    <input required value={grade} name="problem-grade" className="problem-grade" onChange={this.handleUpdateGrade} />
+                    <label htmlFor="problem-form-grade">Grade <span className="red">*</span></label>
+                    <input required value={grade} name="grade" onChange={this.handleUpdateGrade} />
 
                     <label htmlFor="problem-form-area">Area/Boulder</label>
-                    <input type="text" value={area} name="problem-area" className="problem-area" onChange={this.handleUpdateArea} />
+                    <input type="text" value={area} name="area" onChange={this.handleUpdateArea} />
 
                     <label htmlFor="problem-form-notes">Notes</label>
-                    <textarea type="text" value={notes} name="problem-notes" className="problem-notes" onChange={this.handleUpdateNotes} />
+                    <textarea type="text" value={notes} name="notes" onChange={this.handleUpdateNotes} />
 
-                    <div className="problem-sent-wrapper">
+                    <div className="sent-container">
                         <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
-                        <input type="checkbox" checked={sent} name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleUpdateSent} />
+                        <input type="checkbox" checked={sent} name="sent-checkbox" className="sent-checkbox" onChange={this.handleUpdateSent} />
                     </div>
 
-                    <div className="edit-buttons">
-                        <button type="submit" className="add-button">Save</button>
-                        <button type="button" className="cancel-button" onClick={this.handleCancelEdit}>Cancel</button>
+                    <div className="edit-page-buttons-container">
+                        <button type="submit" className="form-button">Save</button>
+                        <button type="button" className="form-button" onClick={this.handleCancelEdit}>Cancel</button>
                     </div>
                 </form>
-            </div>
         )
     }
 }
