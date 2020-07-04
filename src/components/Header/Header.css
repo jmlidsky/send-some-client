@@ -1,25 +1,37 @@
 header {
-    border: 2px solid #e6e6e6;
-    padding: 10px;
+    background-color: #457b9d;
+    padding: 20px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* h1 {
-    padding: 10px;
-} */
+h1 {
+    font-size: 2em;
+}
 
 .logo {
-    color: black;
+    color: #1d3557;
     text-decoration: none;
     text-transform: uppercase;
 }
 
-nav {
-    align-self: center;
+nav a {
+    color: #a8dadc;
+    text-transform: lowercase;
+    text-decoration: none;
 }
 
-nav a {
-    color: black;
+.hyph {
+    color: #a8dadc;
+}
+
+@media (min-width: 768px) {
+    /* header {
+    justify-content: space-between
+}
+
+nav {
+    align-self: center
+} */
 }

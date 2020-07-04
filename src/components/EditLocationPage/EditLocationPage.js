@@ -44,6 +44,10 @@ class EditLocationPage extends Component {
         })
     }
 
+    handleCancelEdit = () => {
+        this.props.history.goBack()
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
         const location_id = + this.props.match.params.id
@@ -78,9 +82,14 @@ class EditLocationPage extends Component {
             <div className="edit-location-page">
                 <form className="edit-location-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Edit Location</h3>
+
                     <label htmlFor="location-form-name">Name *</label>
-                    <input required value={location_name} type="text" name="location-name" className="location-name" onChange={this.handleUpdateLocationName} />
-                    <button type="submit" className="add-location-button">Save</button>
+                    <input required value={location_name} type="text" name="location-name" className="edit-location-name" onChange={this.handleUpdateLocationName} />
+
+                    <div className="edit-buttons">
+                        <button type="submit" className="add-button">Save</button>
+                        <button type="button" className="cancel-button" onClick={this.handleCancelEdit}>Cancel</button>
+                    </div>
                 </form>
             </div>
         )

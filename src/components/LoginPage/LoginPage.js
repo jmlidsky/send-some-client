@@ -32,7 +32,7 @@ class LoginPage extends Component {
         e.preventDefault()
 
         const { username, password } = this.state
-        const user = { username, password } 
+        const user = { username, password }
 
         fetch(`${config.API_ENDPOINT}/auth/login`, {
             method: 'POST',
@@ -62,14 +62,13 @@ class LoginPage extends Component {
         return (
             <form className="login-form" onSubmit={this.handleSubmitJwtAuth}>
                 <h3>Log In</h3>
-                <div>
-                    <label htmlFor="login-form-username">Username</label>
-                    <input required name="username" className="login-form-username" onChange={this.handleChangeUsername}></input>
-                </div>
-                <div>
-                    <label htmlFor="login-form-username">Password</label>
-                    <input required type="password" name="password" className="login-form-password" onChange={this.handleChangePassword}></input>
-                </div>
+
+                <label htmlFor="login-form-username">Username</label>
+                <input required name="username" className="login-form-username" onChange={this.handleChangeUsername}></input>
+
+                <label htmlFor="login-form-username">Password</label>
+                <input required type="password" name="password" className="login-form-password" onChange={this.handleChangePassword}></input>
+
                 <button className="login-button" type="submit">Log In</button>
                 {this.state.error && (<p className="login-error"> {this.state.error.error} </p>)}
             </form>

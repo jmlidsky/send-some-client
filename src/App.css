@@ -5,6 +5,93 @@
     box-sizing: border-box;
 }
 
-main {
-    margin: 10px;
+h1, h2, h3, h4 {
+    font-family: 'Raleway', sans-serif;
+    color: #1d3557;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+body {
+    /* background: url('https://images.pexels.com/photos/1366909/pexels-photo-1366909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); */
+    background: url('./images/climbing-rope.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* forms */
+
+input, textarea {
+    margin: 5px 0px;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    padding: 5px;
+    letter-spacing: 1px;
+}
+
+.signup-form, .login-form, .edit-location-form, .edit-problem-form, .not-found-page{
+    margin-top: 20%;
+}
+
+.signup-form, .login-form, .add-location-form, .add-problem-form, .edit-location-form, .edit-problem-form, .not-found-page {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    background: #fff;
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-button, .login-button, .add-button, .cancel-button {
+    background-color: #fff;
+    color: #1d3557;
+    width: 45%;
+    margin: 10px auto 0px auto;
+    border: .8px solid #1d3557;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.login-button:hover, .signup-button:hover, .add-button:hover {
+    background-color: #1d3557;
+    color: #fff;
+}
+
+.problem-sent-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.problem-sent-checkbox {
+    margin-left: 10px;
+}
+
+.edit-buttons {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* locations & problems page */
+
+.locations-page h2, .problems-page h2 {
+    margin: 5% auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.location-buttons a, .problem-buttons a, .location-buttons button, .problem-buttons button {
+    background: none;
+    margin: 0 8px;
+    border-radius: 6px;
+    padding: 6px;
+    font-family: 'Comfortaa', cursive;
+    font-size: .8em;
+    text-decoration: none;
 }

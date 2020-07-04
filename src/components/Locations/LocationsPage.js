@@ -107,20 +107,23 @@ class LocationsPage extends Component {
                 <form className="add-location-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Location</h3>
                     <label htmlFor="location-form-name">Name *</label>
-                    <input required placeholder="e.g. Chattanooga" type="text" name="location-name" className="location-name" onChange={this.handleChangeLocationName} />
-                    <button type="submit" className="add-location-button">Save</button>
+                    <input required type="text" name="location-name" className="location-name-input" onChange={this.handleChangeLocationName} />
+                    <button type="submit" className="add-button">Save</button>
                 </form>
-                <ul>
+                <div className="locations-list">
                     {locations.map(location =>
-                        <li key={location.id}>
-                            <Link to={`/locations/${location.id}`}>{location.location_name}</Link>
+                        <div className="location-item" key={location.id}>
+                            {/* <div className="location-name-wrapper"> */}
+                            <Link to={`/locations/${location.id}`} className="location-name">{location.location_name}</Link>
+                            {/* </div> */}
                             <div className="location-buttons">
-                                <button onClick={() => this.handleDeleteLocation(location.id)}>Delete</button>
-                                <Link to={`/edit/locations/${location.id}`}>Edit</Link>
+                                <Link to={`/edit/locations/${location.id}`}><i className="far fa-edit"></i></Link>
+                                <button onClick={() => this.handleDeleteLocation(location.id)}><i className="far fa-trash-alt"></i>
+                                </button>
                             </div>
-                        </li>
+                        </div>
                     )}
-                </ul>
+                </div>
             </div>
         )
     }

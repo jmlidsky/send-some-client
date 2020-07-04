@@ -132,25 +132,22 @@ class SignupPage extends Component {
         return (
             <form className="signup-form" onSubmit={this.handleSignupSubmit}>
                 <h3>Sign Up</h3>
-                <div>
-                    <label htmlFor="signup-form-email">Email</label>
-                    <input required type="email" name="email" className="signup-form-email" onChange={this.handleChangeEmail}></input>
-                </div>
-                <div>
-                    <label htmlFor="signup-form-username">Username</label>
-                    <input required type="text" name="username" className="signup-form-username" onChange={this.handleChangeUsername}></input>
-                    {this.state.username.touched && (<ValidationError className="validation-error" message={usernameError} />)}
-                </div>
-                <div>
-                    <label htmlFor="signup-form-password">Password</label>
-                    <input required type="password" name="password" className="signup-form-password" onChange={this.handleChangePassword}></input>
-                    {this.state.password.touched && (<ValidationError className="validation-error" message={passwordError} />)}
-                </div>
-                <div>
-                    <label htmlFor="signup-form-confirm-password">Confirm Password</label>
-                    <input required type="password" name="confirm-password" className="signup-form-confirm-password" onChange={this.handleChangeConfirmPassword}></input>
-                    {this.state.confirmPassword.touched && (<ValidationError className="validation-error" message={confirmPasswordError} />)}
-                </div>
+
+                <label htmlFor="signup-form-email">Email</label>
+                <input required type="email" name="email" className="signup-form-email" onChange={this.handleChangeEmail}></input>
+
+                <label htmlFor="signup-form-username">Username</label>
+                <input required type="text" name="username" className="signup-form-username" onChange={this.handleChangeUsername}></input>
+                {this.state.username.touched && (<ValidationError className="validation-error" message={usernameError} />)}
+
+                <label htmlFor="signup-form-password">Password</label>
+                <input required type="password" name="password" className="signup-form-password" onChange={this.handleChangePassword}></input>
+                {this.state.password.touched && (<ValidationError className="validation-error" message={passwordError} />)}
+
+                <label htmlFor="signup-form-confirm-password">Confirm Password</label>
+                <input required type="password" name="confirm-password" className="signup-form-confirm-password" onChange={this.handleChangeConfirmPassword}></input>
+                {this.state.confirmPassword.touched && (<ValidationError className="validation-error" message={confirmPasswordError} />)}
+
                 <button className="signup-button" type="submit"
                     disabled={
                         this.validateUsername() ||

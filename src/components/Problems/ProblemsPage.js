@@ -24,7 +24,7 @@ class ProblemsPage extends Component {
     componentDidMount() {
         // for location name header
         const location_id = + this.props.match.params.id
-        
+
         fetch(`${config.API_ENDPOINT}/locations/${location_id}`, {
             headers: {
                 'content-type': 'application/json',
@@ -144,27 +144,25 @@ class ProblemsPage extends Component {
                 <h2>{this.state.location_name}</h2>
                 <form className="add-problem-form" onSubmit={e => this.handleSubmit(e)}>
                     <h3>Add a Problem</h3>
-                    <div>
-                        <label htmlFor="problem-form-name">Name *</label>
-                        <input required type="text" name="problem-name" className="problem-name" onChange={this.handleChangeProblemName} />
-                    </div>
-                    <div>
-                        <label htmlFor="problem-form-grade">Grade *</label>
-                        <input required name="problem-grade" className="problem-grade" onChange={this.handleChangeGrade} />
-                    </div>
-                    <div>
-                        <label htmlFor="problem-form-area">Area/Boulder</label>
-                        <input type="text" name="problem-area" className="problem-area" onChange={this.handleChangeArea} />
-                    </div>
-                    <div>
-                        <label htmlFor="problem-form-notes">Notes</label>
-                        <textarea placeholder="beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={this.handleChangeNotes} />
-                    </div>
-                    <div>
+
+                    <label htmlFor="problem-form-name">Name *</label>
+                    <input required type="text" name="problem-name" className="problem-name" onChange={this.handleChangeProblemName} />
+
+                    <label htmlFor="problem-form-grade">Grade *</label>
+                    <input required name="problem-grade" className="problem-grade" onChange={this.handleChangeGrade} />
+
+                    <label htmlFor="problem-form-area">Area/Boulder</label>
+                    <input type="text" name="problem-area" className="problem-area" onChange={this.handleChangeArea} />
+
+                    <label htmlFor="problem-form-notes">Notes</label>
+                    <textarea placeholder="beta, # of pads, etc." type="text" name="problem-notes" className="problem-notes" onChange={this.handleChangeNotes} />
+
+                    <div className="problem-sent-wrapper">
                         <label htmlFor="problem-form-sent-checkbox">Problem Sent?</label>
                         <input type="checkbox" name="problem-sent-checkbox" className="problem-sent-checkbox" onChange={this.handleChangeSent} />
                     </div>
-                    <button className="add-problem-button" type="submit">Save</button>
+
+                    <button className="add-button" type="submit">Save</button>
                 </form>
                 <div>
                     <ProblemsList problems={problemsToDisplay} location_id={location_id} />

@@ -1,15 +1,48 @@
-h4 {
-    margin-top: 20px;
+.problems-list h4 {
+    margin: 10% 0 5% 0;
+    text-align: center;
+    color: #fff;
 }
 
-.project-name, .ascent-name {
-    background:#e6e6e6;
+.problems-list {
+    margin-bottom: 5%;
+}
+
+.problem-item {
+    margin: 0 auto;
+    width: 80%;
+    color: #fff;
+    font-size: .8em;
+    line-height: 1.7em;
+    padding: 0 0 10px 0;
+}
+
+.project-name-and-grade, .ascent-name-and-grade {
+    padding: 8px;
     width: 100%;
-    margin-top: 8px;
-    padding: 5px;
+    border-radius: 4px;
+    background-color: #457b9d;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .problem-expanding-container {
-    border: 1px solid #e6e6e6;
-    padding: 5px;
+    background-color: #757c9d;
+    padding: 10px;
+    margin: 3px 0 0 0;
+}
+
+.problem-details {
+    padding-bottom: 10px;
+    border-bottom: .8px solid #fff;
+}
+
+.problem-buttons {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.problem-buttons a, .problem-buttons button {
+    border: 1px solid #fff;
+    color: #fff;
 }

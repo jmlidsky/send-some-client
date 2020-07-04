@@ -61,18 +61,17 @@ class ProblemsList extends Component {
         return (
             projects.map((project, index) => {
                 return (
-                    <div key={project.id}>
-                        <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="project-name">{project.problem_name}</button>
+                    <div className="problem-item" key={project.id}>
+                        <button key={index} onClick={() => this.handleProjectButtonClick(index)} className="project-name-and-grade">{project.problem_name} &ndash; {project.grade}</button>
                         {(this.state.currentProjectIndex === index) &&
                             <div className="problem-expanding-container">
                                 <div className="problem-details">
-                                    <div className="project-grade">{project.grade}</div>
-                                    <div className="project-area">{project.area}</div>
-                                    <div className="project-notes">{project.notes}</div>
+                                    <div className="project-area">Area/Boulder: {project.area}</div>
+                                    <div className="project-notes">Notes: {project.notes}</div>
                                 </div>
                                 <div className="problem-buttons">
-                                    <button onClick={() => this.handleDeleteProblem(project.id)}>Delete</button>
-                                    <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${project.id}`, state: { location_id: this.props.location_id } }}>Edit</Link>
+                                    <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${project.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
+                                    <button onClick={() => this.handleDeleteProblem(project.id)}><i className="far fa-trash-alt"></i></button>
                                 </div>
                             </div>}
                     </div>
@@ -88,18 +87,17 @@ class ProblemsList extends Component {
         return (
             ascents.map((ascent, index) => {
                 return (
-                    <div key={index}>
-                        <button onClick={() => this.handleAscentButtonClick(index)} className="ascent-name">{ascent.problem_name}</button>
+                    <div className="problem-item" key={index}>
+                        <button onClick={() => this.handleAscentButtonClick(index)} className="ascent-name-and-grade">{ascent.problem_name} &ndash; {ascent.grade}</button>
                         {(this.state.currentAscentIndex === index) &&
                             <div className="problem-expanding-container">
                                 <div className="problem-details">
-                                    <div className="ascent-grade">{ascent.grade}</div>
-                                    <div className="ascent-area">{ascent.area}</div>
-                                    <div className="ascent-notes">{ascent.notes}</div>
+                                    <div className="ascent-area">Area/Boulder: {ascent.area}</div>
+                                    <div className="ascent-notes">Notes: {ascent.notes}</div>
                                 </div>
                                 <div className="problem-buttons">
-                                    <button onClick={() => this.handleDeleteProblem(ascent.id)}>Delete</button>
-                                    <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state: { location_id: this.props.location_id } }}>Edit</Link>
+                                    <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
+                                    <button onClick={() => this.handleDeleteProblem(ascent.id)}><i className="far fa-trash-alt"></i></button>
                                 </div>
                             </div>}
                     </div>
@@ -113,15 +111,15 @@ class ProblemsList extends Component {
             <div className="problems-list" >
                 <section>
                     <h4>My Projects</h4>
-                    <ul>
+                    <div>
                         {this.renderProjects()}
-                    </ul>
+                    </div>
                 </section>
                 <section>
                     <h4>My Ascents</h4>
-                    <ul>
+                    <div>
                         {this.renderAscents()}
-                    </ul>
+                    </div>
                 </section>
             </div>
         )
