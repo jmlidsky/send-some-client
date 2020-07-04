@@ -116,7 +116,7 @@ class LocationsPage extends Component {
                             <Link to={`/locations/${location.id}`}>
                                 <h4 className="location-name">{location.location_name}</h4>
                             </Link>
-                            <div className="location-buttons">
+                            <div className="location-icons-container icons-container">
                                 <Link to={`/edit/locations/${location.id}`}><i className="far fa-edit"></i></Link>
                                 <button onClick={() => this.handleDeleteLocation(location.id)}><i className="far fa-trash-alt"></i>
                                 </button>

@@ -69,7 +69,7 @@ class ProblemsList extends Component {
                                     <div>Area/Boulder: {project.area}</div>
                                     <div>Notes: {project.notes}</div>
                                 </div>
-                                <div className="problem-buttons">
+                                <div className="problem-icons-container icons-container">
                                     <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${project.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
                                     <button onClick={() => this.handleDeleteProblem(project.id)}><i className="far fa-trash-alt"></i></button>
                                 </div>
@@ -95,7 +95,7 @@ class ProblemsList extends Component {
                                     <div><span class="highlight">Area/Boulder:</span> {ascent.area}</div>
                                     <div><span class="highlight">Notes:</span> {ascent.notes}</div>
                                 </div>
-                                <div className="problem-buttons">
+                                <div className="problem-icons-container icons-container">
                                     <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
                                     <button onClick={() => this.handleDeleteProblem(ascent.id)}><i className="far fa-trash-alt"></i></button>
                                 </div>
