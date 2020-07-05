@@ -1,68 +1,125 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SEND SOME
 
-## Available Scripts
+[LIVE APP](https://send-some-client.vercel.app/)
 
-In the project directory, you can run:
+## Summary
 
-### `npm start`
+This app was created to help climbers log problems that they are currently working on & problems that they have completed, organzing them by location.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## A Walk Through the App
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Landing Page**
 
-### `npm test`
+![landing page](src/images/LandingPage.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Login & Sign Up Pages**
 
-### `npm run build`
+![login page](src/images/LoginPage.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![sign up page](src/images/SignupPage.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Locations Page**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![locations page](src/images/LocationsPage.png)
 
-### `npm run eject`
+**Problems Page** 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![problems page](src/images/ProblemsPage.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Problems List**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![problems list](src/images/ProblemsList.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Edit Location & Edit Problem Pages**
 
-## Learn More
+![edit location page](src/images/EditLocationPage.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![edit problem page](src/images/EditProblemPage.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Documentation
 
-### Code Splitting
+```bash
+https://nameless-ocean-69531.herokuapp.com/api
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**Endpoints**
 
-### Analyzing the Bundle Size
+POST a login request.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```bash
+/auth/login
+```
 
-### Making a Progressive Web App
+POST a sign up request.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```bash
+/auth/signup
+```
 
-### Advanced Configuration
+GET all locations for a user.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+```bash
+/locations
+```
 
-### Deployment
+GET a location by id.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```bash
+/locations/:location_id
+```
 
-### `npm run build` fails to minify
+GET all problems in a location for a user.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```bash
+/locations/:location_id/problems
+```
+
+GET a problem by id.
+
+```bash
+/locations/:location_id/problems/:problem_id
+```
+
+POST a location.
+
+```bash
+/locations
+```
+
+POST a problem in a location.
+
+```bash
+/locations/:location_id/problems
+```
+
+PATCH a location.
+
+```bash
+/locations/:location_id
+```
+
+PATCH a problem in a location.
+
+```bash
+/locations/:location_id/problems/:problem_id
+```
+
+DELETE a location.
+
+```bash
+/locations/:location_id
+```
+
+DELETE a problem in a location,
+
+```bash
+/locations/:location_id/problems/:problem_id
+```
+
+## Technologies
+
+* React
+* CSS
+* Node
+* Express
+* PostgreSQL
