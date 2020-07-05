@@ -1,7 +1,15 @@
 {
     "version": 2,
+    "alias": "jilllidsky15-send-some-client",
+    "name": "send-some-client",
     "routes": [
-        { "handle": "filesystem" },
-        { "src": "/.*", "dest": "/index.html" }
+      {
+        "src": "^/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": ".*",
+        "dest": "/index.html"
+      }
     ]
   }
