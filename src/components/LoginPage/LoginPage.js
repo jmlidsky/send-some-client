@@ -69,8 +69,9 @@ class LoginPage extends Component {
                 <label htmlFor="login-form-username">Password</label>
                 <input required type="password" name="password" onChange={this.handleChangePassword}></input>
 
-                <button className="form-button" type="submit">Log In</button>
                 {this.state.error && (<p className="error-message"> {this.state.error.error} </p>)}
+
+                <button className="form-button" type="submit">Log In</button>
             </form>
         )
     }

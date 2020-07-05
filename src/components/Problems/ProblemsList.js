@@ -66,8 +66,8 @@ class ProblemsList extends Component {
                         {(this.state.currentProjectIndex === index) &&
                             <div className="expanding-container">
                                 <div className="details-container">
-                                    <div>Area/Boulder: {project.area}</div>
-                                    <div>Notes: {project.notes}</div>
+                                    <p className="detail"><span className="highlight">Area/Boulder:</span> {project.area}</p>
+                                    <p className="line-break"><span className="highlight">Notes:</span> {project.notes}</p>
                                 </div>
                                 <div className="problem-icons-container icons-container">
                                     <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${project.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
@@ -92,8 +92,8 @@ class ProblemsList extends Component {
                         {(this.state.currentAscentIndex === index) &&
                             <div className="expanding-container">
                                 <div className="details-container">
-                                    <div><span class="highlight">Area/Boulder:</span> {ascent.area}</div>
-                                    <div><span class="highlight">Notes:</span> {ascent.notes}</div>
+                                    <p className="detail"><span class="highlight">Area/Boulder:</span> {ascent.area}</p>
+                                    <p className="line-break"><span class="highlight">Notes:</span> {ascent.notes}</p>
                                 </div>
                                 <div className="problem-icons-container icons-container">
                                     <Link to={{ pathname: `/edit/locations/${this.props.location_id}/problems/${ascent.id}`, state: { location_id: this.props.location_id } }}><i className="far fa-edit"></i></Link>
@@ -110,13 +110,13 @@ class ProblemsList extends Component {
         return (
             <div className="problems-list" >
                 <section className="section-container">
-                    <h4>My Projects</h4>
+                    <h4 className="section-header">My Projects</h4>
                     <div>
                         {this.renderProjects()}
                     </div>
                 </section>
                 <section className="section-container">
-                    <h4>My Ascents</h4>
+                    <h4 className="section-header">My Ascents</h4>
                     <div>
                         {this.renderAscents()}
                     </div>

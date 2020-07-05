@@ -148,6 +148,8 @@ class SignupPage extends Component {
                 <input required type="password" name="confirm-password" onChange={this.handleChangeConfirmPassword}></input>
                 {this.state.confirmPassword.touched && (<ValidationError className="error-message" message={confirmPasswordError} />)}
 
+                {this.state.error && (<p className="error-message"> {this.state.error} </p>)}
+
                 <button className="form-button" type="submit"
                     disabled={
                         this.validateUsername() ||
@@ -155,7 +157,6 @@ class SignupPage extends Component {
                         this.validateConfirmPassword()
                     }
                 >Sign Up</button>
-                {this.state.error && (<p className="error-message"> {this.state.error} </p>)}
             </form>
         )
     }
