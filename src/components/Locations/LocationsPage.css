@@ -1,36 +1,86 @@
 .locations-list {
-    margin: 10% auto 0 auto;
+    margin: 0 auto;
     width: 80%;
 }
 
 .location-item {
-    background-color: #fff;
-    margin-bottom: 5%;
-    border-radius: 4px;
-    padding: 10px;
-    list-style-type: none;
+    margin: 5% 0;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #2b2d42;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     align-items: center;
-    text-align: center
+    text-align: center;
+    list-style-type: none;
 }
 
-.location-name {
-    border-bottom: .8px solid #1d3557;
-    padding-bottom: 10px;
+.location-item a {
     width: 100%;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #1d3557;
 }
 
-.location-buttons {
+h4.location-name {
+    border-bottom: 2px solid #8d99ae;
+    padding: 0 0 10px 0;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h4.location-name:hover {
+    border-bottom: 2px solid #d90429;
+    color: #d90429;
+}
+
+.location-icons-container {
     padding-top: 10px;
 }
 
-.location-buttons a, .location-buttons button {
-    border: 1px solid #e6e6e6;
-    color: #1d3557;
+.location-icons-container a, .location-icons-container button {
+    color: #fff;
+    font-size: 1em;
+}
+
+.location-icons-container a:hover, .location-icons-container button:hover {
+    color: #d90429;
+}
+
+@media (min-width: 768px) {
+    .locations-list {
+        width: 60%;
+    }
+    .location-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    h4.location-name {
+        border-bottom: none;
+        padding: 0;
+        text-align: left;
+    }
+    h4.location-name:hover {
+        border: none;
+    }
+    .location-icons-container {
+        padding-top: 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .location-icons-container a, .location-icons-container button {
+        margin: 0 0 0 25px;
+        font-size: 1.1em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .locations-list {
+        width: 40%;
+    }
+    .location-icons-container a, .location-icons-container button {
+        font-size: 1.2em;
+    }
 }

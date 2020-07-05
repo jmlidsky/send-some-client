@@ -1,32 +1,26 @@
-h2.landing-page {
+h2 {
+    color: #2b2d42;
     font-size: 1.4em;
-    padding: 5px 0px;
     text-transform: uppercase;
 }
 
 .landing-page {
-    background: #fff;
-    margin-top: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    padding: 20px;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
     align-self: center;
     text-align: center;
 }
 
 .landing-page p {
-    padding: 10px 0;
+    padding-top: 10px;
+    color: #2b2d42;
     font-size: 1em;
     line-height: 1.3em;
-    font-family: 'Comfortaa', cursive;
-    color: #457b9d;
 }
 
-.landing-page-directions {
-    border-top: 1px solid #457b9d; 
+p.about {
+    padding-bottom: 10px;
+}
+
+.directions-container {
+    border-top: 1px solid #ef233c;
     font-size: .9em;
 }

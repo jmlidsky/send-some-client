@@ -1,48 +1,89 @@
-.problems-list h4 {
-    margin: 10% 0 5% 0;
-    text-align: center;
-    color: #fff;
+.section-container {
+    margin: 5% auto;
+    border-radius: 8px;
+    padding: 10px;
+    width: 80%;
+    background-color: #fff;
 }
 
-.problems-list {
-    margin-bottom: 5%;
+h4.section-header {
+    margin: 10px auto;
+    color: #2b2d42;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .problem-item {
     margin: 0 auto;
-    width: 80%;
+    padding: 0 0 15px 0;
+    width: 90%;
     color: #fff;
     font-size: .8em;
     line-height: 1.7em;
-    padding: 0 0 10px 0;
 }
 
-.project-name-and-grade, .ascent-name-and-grade {
-    padding: 8px;
+.name-and-grade {
+    border-bottom: 4px solid #8d99ae;
+    border-radius: 8px;
+    padding: 15px 8px;
     width: 100%;
-    border-radius: 4px;
-    background-color: #457b9d;
+    background-color: #2b2d42;
+    color: #fff;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
-.problem-expanding-container {
-    background-color: #757c9d;
+.name-and-grade:hover {
+    border-bottom: 4px solid #d90429;
+}
+
+.expanding-container {
+    margin: -5px 0 0 0;
+    border-radius: 0 0 4px 4px;
     padding: 10px;
-    margin: 3px 0 0 0;
+    background-color: #2b2d42;
 }
 
-.problem-details {
-    padding-bottom: 10px;
-    border-bottom: .8px solid #fff;
+.details-container {
+    padding: 10px;
 }
 
-.problem-buttons {
-    text-align: center;
+.detail {
+    margin: 0 0 8px 0;
+}
+
+.line-break {
+    white-space: pre-line;
+}
+
+.problem-icons-container {
     padding-top: 10px;
+    text-align: center;
 }
 
-.problem-buttons a, .problem-buttons button {
-    border: 1px solid #fff;
+.problem-icons-container a, .problem-icons-container button {
     color: #fff;
+    font-size: 1.2em;
+}
+
+.problem-icons-container a:hover, .problem-icons-container button:hover {
+    color: #d90429;
+}
+
+@media (min-width: 768px) {
+    .section-container {
+        margin: 3% auto;
+        width: 60%;
+    }
+    .problem-icons-container a, .problem-icons-container button {
+        font-size: 1.4em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .section-container {
+        margin: 2% auto;
+        width: 40%;
+    }
 }

@@ -3,104 +3,149 @@
     border: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: 'Comfortaa', cursive;
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Raleway', sans-serif;
-    color: #1d3557;
-}
-
-h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+*:focus {
+    outline: 0;
 }
 
 body {
-    /* background: url('https://images.pexels.com/photos/1366909/pexels-photo-1366909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'); */
     background: url('./images/climbing-rope.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
 }
 
-/* forms */
-
-label {
-    font-family: 'Comfortaa', cursive;
-    font-size: .8em;
-    padding: 4px 0;
+h1 a, h2, h3, h4 {
+    font-family: 'Raleway', sans-serif;
 }
 
-input, textarea {
-    font-family: 'Comfortaa', cursive;
-    margin: 5px 0px;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    padding: 5px;
-    letter-spacing: 1px;
-}
-
-.signup-form, .login-form, .edit-location-form, .edit-problem-form, .not-found-page{
-    margin-top: 20%;
-}
-
-.signup-form, .login-form, .add-location-form, .add-problem-form, .edit-location-form, .edit-problem-form, .not-found-page {
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 8px;
-    background: #fff;
-    padding: 20px;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-}
-
-.signup-button, .login-button, .add-button, .cancel-button {
-    font-family: 'Comfortaa', cursive;
-    background-color: #fff;
-    color: #1d3557;
-    width: 45%;
-    margin: 10px auto 0px auto;
-    border: .8px solid #1d3557;
-    border-radius: 6px;
-    padding: 10px;
-
-}
-
-.login-button:hover, .signup-button:hover, .add-button:hover {
-    background-color: #1d3557;
-    color: #fff;
-}
-
-.problem-sent-wrapper {
-    display: flex;
-    flex-direction: row;
-}
-
-.problem-sent-checkbox {
-    margin-left: 10px;
-}
-
-.edit-buttons {
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-/* locations & problems page */
-
-.locations-page h2, .problems-page h2 {
-    margin: 5% auto;
+h3.top-header {
+    margin: 0 auto 5% 0;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #8d99ae;
+    color: #2b2d42;
+    -webkit-box-shadow: 0px 10px 36px 0px #2b2d42;
+    box-shadow: 0px 10px 36px 0px #2b2d42;
     text-align: center;
     text-transform: uppercase;
 }
 
-.location-buttons a, .problem-buttons a, .location-buttons button, .problem-buttons button {
-    background: none;
-    margin: 0 8px;
-    border-radius: 6px;
-    padding: 6px;
-    font-family: 'Comfortaa', cursive;
+h3.card-header {
+    margin-bottom: 15px;
+    color: #2b2d42;
+    font-size: 1.2em;
+}
+
+.highlight {
+    font-weight: 700;
+}
+
+.red {
+    color: #d90429;
+}
+
+label {
     font-size: .8em;
+}
+
+input, textarea {
+    margin: 10px 0px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    padding: 5px;
+    letter-spacing: 1px;
+}
+
+.form, .not-found-page, .landing-page {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form, .login-form, .edit-form, .not-found-page, .landing-page {
+    margin-top: 15%;
+}
+
+.form-button {
+    margin: 5px auto 0px auto;
+    border: .8px solid #1d3557;
+    border-radius: 8px;
+    padding: 10px;
+    width: 45%;
+    background-color: #fff;
+    color: #1d3557;
+}
+
+.form-button:hover {
+    background-color: #2b2d42;
+    color: #fff;
+}
+
+.sent-container {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.sent-checkbox {
+    /* reset position */
+    margin: 0 0 0 10px;
+}
+
+.edit-page-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.icons-container a, .icons-container button {
+    margin: 0 10px;
+    padding: 0 5px;
+    background: none;
     text-decoration: none;
+}
+
+.error-message {
+    padding: 0 0 10px 0;
+    color: #d90429;
+    font-size: .8em;
+}
+
+@media (min-width: 768px) {
+    label {
+        font-size: .9em;
+    }
+    
+    .signup-form, .login-form, .edit-form, .not-found-page, .landing-page {
+        margin-top: 10%;
+    }
+    .form, .not-found-page, .landing-page {
+        padding: 40px;
+        width: 60%;
+    }
+
+    h3.top-header {
+        margin: 0 auto 3% 0;
+        padding: 15px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .signup-form, .login-form, .edit-form, .not-found-page, .landing-page {
+        margin-top: 5%;
+    }
+    .form, .not-found-page, .landing-page {
+        width: 40%;
+    }
+    h3.top-header {
+        padding: 20px;
+    }
 }
