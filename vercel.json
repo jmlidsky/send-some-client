@@ -1,15 +1,13 @@
 {
-    "version": 2,
-    "alias": "jilllidsky15-send-some-client",
-    "name": "send-some-client",
-    "routes": [
-      {
-        "src": "^/static/(.*)",
-        "dest": "/static/$1"
-      },
-      {
-        "src": ".*",
-        "dest": "/index.html"
-      }
-    ]
-  }
+  "version": 2,
+  "routes": [
+    {
+      "src": "^/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": ".*",
+      "dest": "/index.html"
+    }
+  ]
+}
