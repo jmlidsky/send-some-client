@@ -35,7 +35,7 @@ h4.section-header {
 }
 
 .name-and-grade:hover {
-    border-bottom: 4px solid #d90429;
+    border-bottom: 4px solid #ef233c;
 }
 
 .expanding-container {
@@ -68,7 +68,7 @@ h4.section-header {
 }
 
 .problem-icons-container a:hover, .problem-icons-container button:hover {
-    color: #d90429;
+    color: #ef233c;
 }
 
 @media (min-width: 768px) {

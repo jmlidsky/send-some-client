@@ -30,8 +30,8 @@ h4.location-name {
 }
 
 h4.location-name:hover {
-    border-bottom: 2px solid #d90429;
-    color: #d90429;
+    border-bottom: 2px solid #ef233c;
+    color: #ef233c;
 }
 
 .location-icons-container {
@@ -44,7 +44,7 @@ h4.location-name:hover {
 }
 
 .location-icons-container a:hover, .location-icons-container button:hover {
-    color: #d90429;
+    color: #ef233c;
 }
 
 @media (min-width: 768px) {
